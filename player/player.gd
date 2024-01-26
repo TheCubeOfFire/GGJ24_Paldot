@@ -21,6 +21,7 @@ extends CharacterBody2D
 func _ready() -> void:
 	_skeleton_2d.get_modification_stack().enabled = true
 	_target.position = Vector2.RIGHT * max_target_distance
+	$BodyAnimSprite.play("Idle")
 
 
 func _physics_process(delta: float) -> void:

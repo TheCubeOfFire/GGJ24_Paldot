@@ -27,7 +27,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_xya8f"]
@@ -67,7 +67,6 @@ shape = SubResource("CircleShape2D_tk8to")
 position = Vector2(3, -53)
 sprite_frames = SubResource("SpriteFrames_qjv5d")
 animation = &"Idle"
-frame_progress = 0.678258
 
 [node name="Target" type="Marker2D" parent="."]
 
