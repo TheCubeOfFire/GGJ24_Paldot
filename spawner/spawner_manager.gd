@@ -4,14 +4,17 @@ extends Node
 var pie_count := 0
 #const MAX_PIE := 4
 
+@export var spawner_paths : Array [NodePath] = []
 
-@onready var spawners = [$SpawnerRight, $SpawnerLeft, $SpawnerMidle]
+var spawners = []
 @onready var pie_spawn_timer: Timer = $pie_spawn_timer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pie_spawn_timer.start()
+	for spawner_path in spawner_paths:
+		spawners.append(get_node(spawner_path))
 	#pass # Replace with function body.
 
 

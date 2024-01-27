@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b41bff1dg5h76"]
+
+[ext_resource type="PackedScene" uid="uid://dpfot3yvgoxyu" path="res://plateform/animated_platform.tscn" id="1_324p0"]
+[ext_resource type="Texture2D" uid="uid://dhcbrwc611ms2" path="res://levels/level2/level2.jpg" id="2_naf06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v073w"]
+size = Vector2(1414.34, 119.069)
+
+[node name="Level" type="Node"]
+
+[node name="LevelBackground" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.843503, 0.843503)
+texture = ExtResource("2_naf06")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelBackground"]
+position = Vector2(-4.74213, 337.619)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBackground/StaticBody2D"]
+shape = SubResource("RectangleShape2D_v073w")
+metadata/_edit_group_ = true
+
+[node name="plateform1" parent="." instance=ExtResource("1_324p0")]
+position = Vector2(294, 424)
+scale = Vector2(0.270345, 0.270345)

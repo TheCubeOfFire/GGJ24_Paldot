@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=12 format=3 uid="uid://e66fd4b578w4"]
 
-[ext_resource type="PackedScene" uid="uid://b41bff1dg5h76" path="res://levels/level2/level2_scene.tscn" id="1_iqaqy"]
-[ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="4_wglg7"]
-[ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_xsci7"]
-[ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="5_67ms5"]
-[ext_resource type="PackedScene" uid="uid://hjd060tsaiy" path="res://player/player2.tscn" id="5_ir8m7"]
+[ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_j1xn2"]
+[ext_resource type="PackedScene" uid="uid://b41bff1dg5h76" path="res://levels/level2/level2_scene.tscn" id="5_1qud5"]
+[ext_resource type="PackedScene" uid="uid://hjd060tsaiy" path="res://player/player2.tscn" id="5_5s11d"]
+[ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="6_2vkav"]
+[ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="7_s0hig"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -35,14 +35,22 @@ size = Vector2(1312, 80)
 
 [node name="main" type="Node"]
 
-[node name="Level" parent="." instance=ExtResource("1_iqaqy")]
+[node name="Level_plateform_AnimatableBody2D_CollisionShape2D#SpawnerLeft" parent="." instance=ExtResource("7_s0hig")]
+position = Vector2(552, 318)
+
+[node name="Level" parent="." instance=ExtResource("5_1qud5")]
+
+[node name="Level_plateform_AnimatableBody2D#RemoteTransform2D" type="RemoteTransform2D" parent="Level/plateform1/AnimatableBody2D" index="3"]
+position = Vector2(22.1319, -167.857)
+scale = Vector2(3.69898, 3.69898)
+remote_path = NodePath("../../../../Spawners/SpawnerRight")
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player" parent="Players" instance=ExtResource("4_xsci7")]
+[node name="Player" parent="Players" instance=ExtResource("4_j1xn2")]
 position = Vector2(136, -9)
 
-[node name="Player2" parent="Players" instance=ExtResource("5_ir8m7")]
+[node name="Player2" parent="Players" instance=ExtResource("5_5s11d")]
 position = Vector2(925, -42)
 player_index = 1
 
@@ -92,23 +100,25 @@ debug_color = Color(0, 0.643137, 0.333333, 0.419608)
 metadata/_edit_lock_ = true
 
 [node name="Spawners" type="Node" parent="."]
-script = ExtResource("4_wglg7")
+script = ExtResource("6_2vkav")
+spawner_paths = Array[NodePath]([NodePath("SpawnerRight")])
 
-[node name="SpawnerRight" parent="Spawners" instance=ExtResource("5_67ms5")]
-position = Vector2(981, 441)
-
-[node name="SpawnerLeft" parent="Spawners" instance=ExtResource("5_67ms5")]
-position = Vector2(227, 405)
-
-[node name="SpawnerMidle" parent="Spawners" instance=ExtResource("5_67ms5")]
+[node name="SpawnerMidle" parent="Spawners" instance=ExtResource("7_s0hig")]
 position = Vector2(617, 235)
 
 [node name="pie_spawn_timer" type="Timer" parent="Spawners"]
 wait_time = 2.0
 
+[node name="SpawnerRight" parent="Spawners" instance=ExtResource("7_s0hig")]
+position = Vector2(556, 284)
+scale = Vector2(1, 1)
+
+[connection signal="created" from="Level_plateform_AnimatableBody2D_CollisionShape2D#SpawnerLeft" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]
-[connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]
-[connection signal="created" from="Spawners/SpawnerLeft" to="Spawners" method="_on_pie_created"]
 [connection signal="created" from="Spawners/SpawnerMidle" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="Spawners/pie_spawn_timer" to="Spawners" method="_on_pie_spawn_timer_timeout"]
+[connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]
+
+[editable path="Level"]
+[editable path="Level/plateform1"]
