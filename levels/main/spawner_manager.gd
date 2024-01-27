@@ -2,7 +2,7 @@ extends Node
 
 
 var pie_count := 0
-const MAX_PIE := 4
+#const MAX_PIE := 4
 
 
 @onready var spawners = [$SpawnerRight, $SpawnerLeft, $SpawnerMidle]
@@ -21,8 +21,8 @@ func _process(delta: float) -> void:
 
 
 func _on_pie_spawn_timer_timeout() -> void:
-	if pie_count >= MAX_PIE:
-		return
+	#if pie_count >= MAX_PIE:
+		#return
 	var currentSpawner := spawners.pick_random() as Spawner
 	currentSpawner.spawn()
 
