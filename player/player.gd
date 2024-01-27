@@ -121,6 +121,8 @@ func _grab() -> void:
 
 	_grabbed_pie = pie_nodes.pick_random() as Pie
 	_grabbed_pie.grab()
+	#remove the floor layer for the collisions when grabbed
+	_grabbed_pie.collision_mask &= ~(1 << 0)
 
 	var left_joint := PinJoint2D.new()
 	left_joint.node_a = _left_hand_attachment.get_path()
@@ -145,4 +147,6 @@ func _ungrab() -> void:
 		_right_grabbed_pie_joint = null
 
 	if is_instance_valid(_grabbed_pie):
+		#add the floor layer for the collisions when ungrabbed
+		_grabbed_pie.collision_mask |= 1 << 0
 		_grabbed_pie = null

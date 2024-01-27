@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://pyiqwxhvvwut"]
+
+[ext_resource type="Texture2D" uid="uid://0g2gp7uiussd" path="res://plateform/trapeze.png" id="1_2qv5x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un08l"]
+size = Vector2(290, 22)
+
+[node name="plateform_left" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.998611, 312.691)
+scale = Vector2(0.253587, 0.267831)
+texture = ExtResource("1_2qv5x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-0.998611, 588.691)
+shape = SubResource("RectangleShape2D_un08l")
+one_way_collision = true
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

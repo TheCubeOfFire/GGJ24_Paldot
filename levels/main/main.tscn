@@ -1,7 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=12 format=3 uid="uid://dljve441yjm5y"]
 
-[ext_resource type="Texture2D" uid="uid://by4lw00yfauya" path="res://levels/main/level.png" id="3_hxh2g"]
-[ext_resource type="Script" path="res://levels/main/spawner_manager.gd" id="4_wglg7"]
+[ext_resource type="Script" path="res://levels/main/main.gd" id="1_hvth3"]
+[ext_resource type="Texture2D" uid="uid://esf657rouvio" path="res://levels/main/level.png" id="3_hxh2g"]
+[ext_resource type="PackedScene" uid="uid://pyiqwxhvvwut" path="res://plateform/trapeze_plateform.tscn" id="3_sawlf"]
+[ext_resource type="PackedScene" uid="uid://jmaiqea26w0w" path="res://plateform/round_plateform.tscn" id="4_vgkc4"]
+[ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="4_wglg7"]
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_xsci7"]
 [ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="5_67ms5"]
 
@@ -10,15 +13,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0)
 }
 point_count = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_un08l"]
-size = Vector2(243.125, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ru8"]
-size = Vector2(243.125, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ktj5"]
-size = Vector2(243.125, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivsq4"]
 size = Vector2(1312, 80)
@@ -43,18 +37,31 @@ size = Vector2(1312, 80)
 
 [node name="main" type="Node"]
 
-[node name="Level" type="Sprite2D" parent="."]
+[node name="Level" type="Node" parent="."]
+
+[node name="LevelBackground" type="Sprite2D" parent="Level"]
 position = Vector2(576, 324)
 texture = ExtResource("3_hxh2g")
 metadata/_edit_lock_ = true
 
+[node name="trapeze" parent="Level" instance=ExtResource("3_sawlf")]
+position = Vector2(559, -131)
+scale = Vector2(0.672077, 0.672077)
+
+[node name="plateform_left" parent="Level" instance=ExtResource("4_vgkc4")]
+position = Vector2(269, 420)
+
+[node name="plateform_right" parent="Level" instance=ExtResource("4_vgkc4")]
+position = Vector2(962, 476)
+scale = Vector2(-1, 1)
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource("4_xsci7")]
-position = Vector2(717, 640)
+position = Vector2(945, -72)
 
 [node name="Player2" parent="Players" instance=ExtResource("4_xsci7")]
-position = Vector2(383, 640)
+position = Vector2(235, -93)
 player_index = 1
 
 [node name="pie_spawn_timer" type="Timer" parent="."]
@@ -64,36 +71,6 @@ wait_time = 2.0
 curve = SubResource("Curve2D_7vpxj")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-
-[node name="plateforms" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="plateform_left" type="StaticBody2D" parent="plateforms"]
-position = Vector2(211, 462)
-collision_mask = 0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_left"]
-shape = SubResource("RectangleShape2D_un08l")
-one_way_collision = true
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="plateform_midle" type="StaticBody2D" parent="plateforms"]
-position = Vector2(575, 400)
-collision_mask = 0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_midle"]
-shape = SubResource("RectangleShape2D_g6ru8")
-one_way_collision = true
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="plateform_right" type="StaticBody2D" parent="plateforms"]
-position = Vector2(943, 512)
-collision_mask = 0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_right"]
-shape = SubResource("RectangleShape2D_8ktj5")
-one_way_collision = true
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Bounds" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -136,23 +113,16 @@ metadata/_edit_lock_ = true
 script = ExtResource("4_wglg7")
 
 [node name="SpawnerRight" parent="Spawners" instance=ExtResource("5_67ms5")]
-position = Vector2(1014, 484)
+position = Vector2(981, 441)
 
 [node name="SpawnerLeft" parent="Spawners" instance=ExtResource("5_67ms5")]
-position = Vector2(127, 437)
+position = Vector2(227, 405)
 
 [node name="SpawnerMidle" parent="Spawners" instance=ExtResource("5_67ms5")]
-position = Vector2(576, 382)
+position = Vector2(617, 235)
 
 [node name="pie_spawn_timer" type="Timer" parent="Spawners"]
 wait_time = 2.0
-
-[node name="Player2" parent="." instance=ExtResource("4_xsci7")]
-position = Vector2(383, 640)
-player_index = 1
-
-[node name="Player" parent="." instance=ExtResource("4_xsci7")]
-position = Vector2(717, 640)
 
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://esf657rouvio"
-path="res://.godot/imported/level.png-da50df8f2359b01b6e9475f071402e6a.ctex"
+uid="uid://0g2gp7uiussd"
+path="res://.godot/imported/trapeze.png-f4a0d83f1b4d522c139bd856d4a4a14b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/main/level.png"
-dest_files=["res://.godot/imported/level.png-da50df8f2359b01b6e9475f071402e6a.ctex"]
+source_file="res://plateform/trapeze.png"
+dest_files=["res://.godot/imported/trapeze.png-f4a0d83f1b4d522c139bd856d4a4a14b.ctex"]
 
 [params]
 
