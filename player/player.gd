@@ -44,6 +44,11 @@ func _physics_process(delta: float) -> void:
 		h_speed = speed * Input.get_axis("move_left_p2", "move_right_p2")
 	velocity = Vector2(h_speed, 0.0)
 
+	if not velocity.is_zero_approx():
+		_body_anim_sprite.play("Move")
+	else:
+		_body_anim_sprite.play("Idle")
+
 	_hands.linear_velocity = (_arms_target.global_position - _hands.global_position) * arm_speed
 
 	move_and_slide()
