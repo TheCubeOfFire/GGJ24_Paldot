@@ -33,7 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfuy0"]
 size = Vector2(1312, 80)
 
-[node name="main" type="Node"]
+[node name="main2" type="Node"]
 
 [node name="Level_plateform_AnimatableBody2D_CollisionShape2D#SpawnerLeft" parent="." instance=ExtResource("7_s0hig")]
 position = Vector2(552, 318)

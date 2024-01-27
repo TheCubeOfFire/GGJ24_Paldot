@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=14 format=3 uid="uid://dljve441yjm5y"]
 
-[ext_resource type="PackedScene" uid="uid://b41bff1dg5h76" path="res://levels/level2/level2_scene.tscn" id="1_iqaqy"]
+[ext_resource type="Texture2D" uid="uid://esf657rouvio" path="res://levels/main/level.png" id="3_hxh2g"]
+[ext_resource type="PackedScene" uid="uid://pyiqwxhvvwut" path="res://plateform/trapeze_plateform.tscn" id="3_sawlf"]
+[ext_resource type="PackedScene" uid="uid://jmaiqea26w0w" path="res://plateform/round_plateform.tscn" id="4_vgkc4"]
 [ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="4_wglg7"]
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_xsci7"]
 [ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="5_67ms5"]
@@ -35,7 +37,23 @@ size = Vector2(1312, 80)
 
 [node name="main" type="Node"]
 
-[node name="Level" parent="." instance=ExtResource("1_iqaqy")]
+[node name="Level" type="Node" parent="."]
+
+[node name="LevelBackground" type="Sprite2D" parent="Level"]
+position = Vector2(576, 324)
+texture = ExtResource("3_hxh2g")
+metadata/_edit_lock_ = true
+
+[node name="trapeze" parent="Level" instance=ExtResource("3_sawlf")]
+position = Vector2(559, -131)
+scale = Vector2(0.672077, 0.672077)
+
+[node name="plateform_left" parent="Level" instance=ExtResource("4_vgkc4")]
+position = Vector2(269, 420)
+
+[node name="plateform_right" parent="Level" instance=ExtResource("4_vgkc4")]
+position = Vector2(962, 476)
+scale = Vector2(-1, 1)
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -93,6 +111,7 @@ metadata/_edit_lock_ = true
 
 [node name="Spawners" type="Node" parent="."]
 script = ExtResource("4_wglg7")
+spawner_paths = Array[NodePath]([NodePath("SpawnerRight"), NodePath("SpawnerLeft"), NodePath("SpawnerMidle")])
 
 [node name="SpawnerRight" parent="Spawners" instance=ExtResource("5_67ms5")]
 position = Vector2(981, 441)
