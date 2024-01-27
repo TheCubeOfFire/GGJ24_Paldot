@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://hjd060tsaiy"]
+
+[ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="1_c3mry"]
+[ext_resource type="Texture2D" uid="uid://bwgl3a0e4suui" path="res://player/sprites/player2/clown_idle1_B.png" id="2_44061"]
+[ext_resource type="Texture2D" uid="uid://ddswh617w8v7s" path="res://player/sprites/player2/clown_idle5_B.png" id="3_sn53m"]
+[ext_resource type="Texture2D" uid="uid://4h81txrfou4t" path="res://player/sprites/player2/clown_idle2_B.png" id="4_y404d"]
+[ext_resource type="Texture2D" uid="uid://ccjgppksvstwp" path="res://player/sprites/player2/clown_idle3_B.png" id="5_eif35"]
+[ext_resource type="Texture2D" uid="uid://cxgvy3insvpn2" path="res://player/sprites/player2/clown_idle4_B.png" id="6_3n83n"]
+[ext_resource type="Texture2D" uid="uid://bww0yi8p64vjo" path="res://player/sprites/player2/clown_idle6_B.png" id="7_y4dua"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eirfh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_44061")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sn53m")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_44061")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y404d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eif35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3n83n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sn53m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_y4dua")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_otu5u"]
+resource_local_to_scene = true
+target_nodepath = NodePath("../Hands")
+joint_one_bone_idx = 2
+joint_one_bone2d_node = NodePath("Body/RightShoulder/RightArm")
+joint_two_bone_idx = 3
+joint_two_bone2d_node = NodePath("Body/RightShoulder/RightArm/RightForearm")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_wdimg"]
+resource_local_to_scene = true
+target_nodepath = NodePath("../Hands")
+flip_bend_direction = true
+joint_one_bone_idx = 6
+joint_one_bone2d_node = NodePath("Body/LeftShoulder/LeftArm")
+joint_two_bone_idx = 7
+joint_two_bone2d_node = NodePath("Body/LeftShoulder/LeftArm/LeftForearm")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_wn7ol"]
+resource_local_to_scene = true
+modification_count = 2
+modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_otu5u")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_wdimg")
+
+[node name="Player" instance=ExtResource("1_c3mry")]
+
+[node name="BodyAnimSprite" parent="." index="0"]
+position = Vector2(-5, -98.75)
+sprite_frames = SubResource("SpriteFrames_eirfh")
+animation = &"Move"
+frame_progress = 0.914161
+
+[node name="Skeleton2D" parent="." index="3"]
+modification_stack = SubResource("SkeletonModificationStack2D_wn7ol")
