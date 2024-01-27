@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=9 format=3 uid="uid://dljve441yjm5y"]
 
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_hvth3"]
 [ext_resource type="PackedScene" uid="uid://bbiotug5px8wx" path="res://pie/pie.tscn" id="1_k3k2v"]
 [ext_resource type="Texture2D" uid="uid://by4lw00yfauya" path="res://levels/main/level.png" id="3_hxh2g"]
+[ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_xsci7"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -59,5 +60,8 @@ position = Vector2(943, 512)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_right"]
 shape = SubResource("RectangleShape2D_8ktj5")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Player" parent="." instance=ExtResource("4_xsci7")]
+position = Vector2(103, 648)
 
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
