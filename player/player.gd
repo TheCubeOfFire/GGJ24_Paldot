@@ -164,10 +164,11 @@ func _on_pie_detector_body_entered(body: Node2D) -> void:
 		return
 
 	var pie := body as Pie
-	if not pie.is_launched:
-		return
 
-	_animate_cream()
+	# compare with own pie in case of grabbing to avoid self-pieing
+	if pie.is_launched or (pie.is_grabbed and pie != _grabbed_pie):
+		pie.queue_free()
+		_animate_cream()
 
 
 func _animate_cream() -> void:
