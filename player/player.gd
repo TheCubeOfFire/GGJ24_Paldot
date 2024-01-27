@@ -99,7 +99,7 @@ func _update_vertical_speed() -> void:
 
 	if velocity.y < 0.0:
 		if Input.is_action_just_released(jump_action):
-			velocity.y = 0.0
+			velocity.y = velocity.y * 0.5
 		velocity.y += gravity * get_physics_process_delta_time()
 	else:
 		velocity.y += falling_gravity_multiplier * gravity * get_physics_process_delta_time()
@@ -119,7 +119,8 @@ func _grab() -> void:
 	if pie_nodes.is_empty():
 		return
 
-	_grabbed_pie = pie_nodes.pick_random() as RigidBody2D
+	_grabbed_pie = pie_nodes.pick_random() as Pie
+	_grabbed_pie.grab()
 
 	var left_joint := PinJoint2D.new()
 	left_joint.node_a = _left_hand_attachment.get_path()
