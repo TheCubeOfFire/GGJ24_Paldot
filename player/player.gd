@@ -34,6 +34,6 @@ func _physics_process(delta: float) -> void:
 	var h_speed := speed * Input.get_axis("move_left", "move_right")
 	velocity = Vector2(h_speed, 0.0)
 
-	_hands.linear_velocity = (_arms_target.position - _hands.position) * arm_speed
+	_hands.linear_velocity = (_arms_target.global_position - _hands.global_position) * arm_speed
 
 	move_and_slide()
