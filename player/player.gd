@@ -168,6 +168,12 @@ func _on_pie_detector_body_entered(body: Node2D) -> void:
 	# compare with own pie in case of grabbing to avoid self-pieing
 	if pie.is_launched or (pie.is_grabbed and pie != _grabbed_pie):
 		pie.queue_free()
+
+		if player_index == 0:
+			ScoreManager.increment_p2_score()
+		else:
+			ScoreManager.increment_p1_score()
+
 		_animate_cream()
 
 
