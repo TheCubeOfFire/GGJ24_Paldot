@@ -2,6 +2,7 @@ class_name Pie
 extends RigidBody2D
 
 signal destroyed
+signal grabbed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,3 +15,8 @@ func _process(delta: float) -> void:
 
 func destroy() ->void:
 	destroyed.emit()
+
+func grab() ->void:
+	grabbed.emit()
+
+
