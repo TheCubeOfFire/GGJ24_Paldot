@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcj7c5qs7gxvp"]
+
+[ext_resource type="Script" path="res://spawner/spawner.gd" id="1_tyd3b"]
+[ext_resource type="PackedScene" uid="uid://bbiotug5px8wx" path="res://pie/pie.tscn" id="2_ef3ke"]
+
+[node name="Spawner" type="Marker2D"]
+top_level = true
+position = Vector2(457, 424)
+gizmo_extents = 42.9
+script = ExtResource("1_tyd3b")
+pie = ExtResource("2_ef3ke")

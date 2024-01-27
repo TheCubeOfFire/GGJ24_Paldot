@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c834fi1snhcff"
-path="res://.godot/imported/pie.png-c1f6dd42c2a6a00e805a5bbbbbb498e4.ctex"
+uid="uid://hbr8v63pj48s"
+path="res://.godot/imported/cream_pie.png-ad8d0372e7336538de845a1dddc10a45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pie/pie.png"
-dest_files=["res://.godot/imported/pie.png-c1f6dd42c2a6a00e805a5bbbbbb498e4.ctex"]
+source_file="res://pie/cream_pie.png"
+dest_files=["res://.godot/imported/cream_pie.png-ad8d0372e7336538de845a1dddc10a45.ctex"]
 
 [params]
 

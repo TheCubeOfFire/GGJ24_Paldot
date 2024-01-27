@@ -1,19 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbiotug5px8wx"]
+[gd_scene load_steps=4 format=3 uid="uid://bbiotug5px8wx"]
 
-[ext_resource type="Texture2D" uid="uid://c834fi1snhcff" path="res://pie/pie.png" id="1_lyasq"]
+[ext_resource type="Texture2D" uid="uid://hbr8v63pj48s" path="res://pie/cream_pie.png" id="1_cvf4l"]
+[ext_resource type="Script" path="res://pie/pie.gd" id="1_setri"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0xe2"]
 radius = 28.0
-height = 92.0
+height = 90.0
 
 [node name="pie_body" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 11
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.193582, 0.193582)
-texture = ExtResource("1_lyasq")
+script = ExtResource("1_setri")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o0xe2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-1, -10)
+scale = Vector2(0.0603385, 0.0603385)
+texture = ExtResource("1_cvf4l")

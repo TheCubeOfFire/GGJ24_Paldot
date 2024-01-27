@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=13 format=3 uid="uid://dljve441yjm5y"]
 
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_hvth3"]
-[ext_resource type="PackedScene" uid="uid://bbiotug5px8wx" path="res://pie/pie.tscn" id="1_k3k2v"]
 [ext_resource type="Texture2D" uid="uid://by4lw00yfauya" path="res://levels/main/level.png" id="3_hxh2g"]
+[ext_resource type="Script" path="res://levels/main/spawner_manager.gd" id="4_wglg7"]
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_xsci7"]
+[ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="5_67ms5"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -31,15 +32,11 @@ size = Vector2(80, 800)
 
 [node name="main" type="Node"]
 script = ExtResource("1_hvth3")
-pie = ExtResource("1_k3k2v")
 
 [node name="Level" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
 texture = ExtResource("3_hxh2g")
 metadata/_edit_lock_ = true
-
-[node name="pie_spawn_timer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_7vpxj")
@@ -107,4 +104,22 @@ shape = SubResource("RectangleShape2D_kmqqv")
 debug_color = Color(0.796078, 0.619608, 0, 0.419608)
 metadata/_edit_lock_ = true
 
-[connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
+[node name="Spawners" type="Node" parent="."]
+script = ExtResource("4_wglg7")
+
+[node name="SpawnerRight" parent="Spawners" instance=ExtResource("5_67ms5")]
+position = Vector2(1014, 484)
+
+[node name="SpawnerLeft" parent="Spawners" instance=ExtResource("5_67ms5")]
+position = Vector2(127, 437)
+
+[node name="SpawnerMidle" parent="Spawners" instance=ExtResource("5_67ms5")]
+position = Vector2(576, 382)
+
+[node name="pie_spawn_timer" type="Timer" parent="Spawners"]
+wait_time = 2.0
+
+[connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]
+[connection signal="created" from="Spawners/SpawnerLeft" to="Spawners" method="_on_pie_created"]
+[connection signal="created" from="Spawners/SpawnerMidle" to="Spawners" method="_on_pie_created"]
+[connection signal="timeout" from="Spawners/pie_spawn_timer" to="Spawners" method="_on_pie_spawn_timer_timeout"]
