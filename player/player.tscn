@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bww58mn12tq4o"]
+[gd_scene load_steps=17 format=3 uid="uid://bww58mn12tq4o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xu54"]
 [ext_resource type="Texture2D" uid="uid://bov30svyjbifg" path="res://sprites/clown_idle1.png" id="2_o02c7"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bt3srmld0q2iw" path="res://sprites/clown_idle2.png" id="3_el27u"]
 [ext_resource type="Texture2D" uid="uid://c5s0m310sq7vy" path="res://sprites/clown_idle3.png" id="4_hskoj"]
 [ext_resource type="Texture2D" uid="uid://m1sfnqym5jqy" path="res://sprites/clown_idle4.png" id="5_rwadi"]
+[ext_resource type="Texture2D" uid="uid://bd4v5tgkh0mnr" path="res://sprites/arm_right_open.png" id="7_j66ou"]
+[ext_resource type="Texture2D" uid="uid://dupves6i35chc" path="res://sprites/arm_left_open.png" id="7_li421"]
+[ext_resource type="Texture2D" uid="uid://c767htnwkxxec" path="res://sprites/shoulder_right.png" id="8_1h8jc"]
+[ext_resource type="Texture2D" uid="uid://cyfmtjmnc0j04" path="res://sprites/shoulder_left.png" id="8_duqr4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tk8to"]
 radius = 64.0
@@ -50,9 +54,6 @@ modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_xya8f")
 modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_03ii1")
 
-[sub_resource type="QuadMesh" id="QuadMesh_72e7o"]
-center_offset = Vector3(0.5, 0, 0)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_14lm2"]
 
 [node name="Player" type="CharacterBody2D"]
@@ -89,15 +90,15 @@ rotation = 1.5708
 rest = Transform2D(-3.61999e-06, 1, -1, -3.61999e-06, 129, 5.63877e-06)
 
 [node name="RightArm" type="Bone2D" parent="Skeleton2D/Body/RightShoulder"]
-position = Vector2(35.0005, -12)
+position = Vector2(30.0005, -4)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 
 [node name="RightForearm" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
-position = Vector2(50, 0)
+position = Vector2(30, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
 [node name="RightHand" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
-position = Vector2(50, 0)
+position = Vector2(29, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -109,13 +110,15 @@ self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_x6rwt")
 
-[node name="TempForearmMesh" type="MeshInstance2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
-scale = Vector2(51.5005, 13.5)
-mesh = SubResource("QuadMesh_72e7o")
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
+position = Vector2(20, -1)
+rotation = -1.57079
+texture = ExtResource("7_li421")
 
-[node name="TempArmMesh" type="MeshInstance2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
-scale = Vector2(51.5005, 13.5)
-mesh = SubResource("QuadMesh_72e7o")
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
+position = Vector2(13, -3)
+rotation = -0.785397
+texture = ExtResource("8_duqr4")
 
 [node name="LeftShoulder" type="Bone2D" parent="Skeleton2D/Body"]
 position = Vector2(129, 5.63877e-06)
@@ -123,15 +126,15 @@ rotation = -1.5708
 rest = Transform2D(-3.61999e-06, -1, 1, -3.61999e-06, 129, 5.63877e-06)
 
 [node name="LeftArm" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder"]
-position = Vector2(36.9995, 12.0003)
+position = Vector2(33.9995, 2.00025)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 
 [node name="LeftForearm" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
-position = Vector2(50, 0)
+position = Vector2(29, -8.99982)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
 [node name="LeftHand" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
-position = Vector2(50, 1.20005e-05)
+position = Vector2(25, -3.99982)
 rest = Transform2D(1, 0, 0, 1, 50, 1.20005e-05)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -144,13 +147,15 @@ rotation = -3.14159
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_x6rwt")
 
-[node name="TempForearmMesh" type="MeshInstance2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
-scale = Vector2(51.5005, 13.5)
-mesh = SubResource("QuadMesh_72e7o")
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
+position = Vector2(16.0001, -1.99985)
+rotation = -1.57079
+texture = ExtResource("7_j66ou")
 
-[node name="TempArmMesh" type="MeshInstance2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
-scale = Vector2(51.5005, 13.5)
-mesh = SubResource("QuadMesh_72e7o")
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
+position = Vector2(13, -0.999906)
+rotation = -2.40676
+texture = ExtResource("8_1h8jc")
 
 [node name="Hands" type="RigidBody2D" parent="."]
 collision_layer = 2
