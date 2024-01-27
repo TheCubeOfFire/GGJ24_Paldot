@@ -122,9 +122,11 @@ wait_time = 2.0
 [node name="Player2" parent="." instance=ExtResource("4_xsci7")]
 position = Vector2(383, 640)
 player_index = 1
+speed = 300.0
 
 [node name="Player" parent="." instance=ExtResource("4_xsci7")]
 position = Vector2(717, 640)
+speed = 300.0
 
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]

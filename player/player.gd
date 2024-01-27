@@ -3,12 +3,18 @@ extends CharacterBody2D
 @export_range(0, 1) var player_index : int
 
 ## Maximum horizontal speed of the character
-@export_range(0.0, 1e6, 1.0, "suffix:px/s") var speed := 100.0
+@export_range(0.0, 1e6, 1.0, "suffix:px/s") var speed := 300.0
 
 ## Maximum distance osf reach of the arms
 @export_range(0.0, 1000.0, 1.0, "suffix:px") var max_target_distance := 200.0
 
 @export_range(0.0, 100.0, 1.0, "suffix:px/s") var arm_speed := 10.0
+
+@export_range(0.0, 1e6, 1.0, "suffix:px/s") var jump_impulse := 1000.0
+
+@export_range(0.0, 1e6, 1.0, "suffix:px/s^2") var gravity := 2000.0
+
+@export_range(0.0, 10.0, 0.1) var falling_gravity_multiplier := 2.0
 
 
 var _grabbed_pie: RigidBody2D = null
@@ -37,29 +43,10 @@ func _ready() -> void:
 	_body_anim_sprite.play("Idle")
 
 
-func _physics_process(delta: float) -> void:
-	var input_vector
-	if player_index == 0:
-		input_vector = Input.get_vector("arm_left_p1", "arm_right_p1", "arm_up_p1", "arm_down_p1")
-	else:
-		input_vector = Input.get_vector("arm_left_p2", "arm_right_p2", "arm_up_p2", "arm_down_p2")
-
-	if not input_vector.is_zero_approx():
-		_arms_target.position = input_vector.normalized() * max_target_distance
-
-	var h_speed
-	if player_index == 0:
-		h_speed = speed * Input.get_axis("move_left_p1", "move_right_p1")
-	else:
-		h_speed = speed * Input.get_axis("move_left_p2", "move_right_p2")
-	velocity = Vector2(h_speed, 0.0)
-
-	if not velocity.is_zero_approx():
-		_body_anim_sprite.play("Move")
-	else:
-		_body_anim_sprite.play("Idle")
-
-	_hands.linear_velocity = (_arms_target.global_position - _hands.global_position) * arm_speed
+func _physics_process(_delta: float) -> void:
+	_update_arms_position()
+	_update_horizontal_speed()
+	_update_vertical_speed()
 
 	move_and_slide()
 
@@ -74,6 +61,48 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_released(grab_action):
 		_ungrab()
+
+
+func _update_arms_position() -> void:
+	var input_vector
+	if player_index == 0:
+		input_vector = Input.get_vector("arm_left_p1", "arm_right_p1", "arm_up_p1", "arm_down_p1")
+	else:
+		input_vector = Input.get_vector("arm_left_p2", "arm_right_p2", "arm_up_p2", "arm_down_p2")
+
+	if not input_vector.is_zero_approx():
+		_arms_target.position = input_vector.normalized() * max_target_distance
+
+	_hands.linear_velocity = (_arms_target.global_position - _hands.global_position) * arm_speed
+
+
+func _update_horizontal_speed() -> void:
+	var h_speed: float
+	if player_index == 0:
+		h_speed = speed * Input.get_axis("move_left_p1", "move_right_p1")
+	else:
+		h_speed = speed * Input.get_axis("move_left_p2", "move_right_p2")
+	velocity.x = h_speed
+
+	if not velocity.is_zero_approx():
+		_body_anim_sprite.play("Move")
+	else:
+		_body_anim_sprite.play("Idle")
+
+
+func _update_vertical_speed() -> void:
+	var jump_action := "jump_p1" if player_index == 0 else "jump_p2"
+
+	if is_on_floor():
+		if Input.is_action_just_pressed(jump_action):
+			velocity.y -= jump_impulse
+
+	if velocity.y < 0.0:
+		if Input.is_action_just_released(jump_action):
+			velocity.y = 0.0
+		velocity.y += gravity * get_physics_process_delta_time()
+	else:
+		velocity.y += falling_gravity_multiplier * gravity * get_physics_process_delta_time()
 
 
 func _grab() -> void:
