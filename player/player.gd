@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export_range(0, 1) var player_index : int
 
 ## Maximum horizontal speed of the character
 @export_range(0.0, 1e6, 1.0, "suffix:px/s") var speed := 100.0
@@ -27,11 +28,20 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var input_vector := Input.get_vector("arm_left", "arm_right", "arm_up", "arm_down")
+	var input_vector
+	if player_index == 0:
+		input_vector = Input.get_vector("arm_left_p1", "arm_right_p1", "arm_up_p1", "arm_down_p1")
+	else:
+		input_vector = Input.get_vector("arm_left_p2", "arm_right_p2", "arm_up_p2", "arm_down_p2")
+
 	if not input_vector.is_zero_approx():
 		_arms_target.position = input_vector.normalized() * max_target_distance
 
-	var h_speed := speed * Input.get_axis("move_left", "move_right")
+	var h_speed
+	if player_index == 0:
+		h_speed = speed * Input.get_axis("move_left_p1", "move_right_p1")
+	else:
+		h_speed = speed * Input.get_axis("move_left_p2", "move_right_p2")
 	velocity = Vector2(h_speed, 0.0)
 
 	_hands.linear_velocity = (_arms_target.global_position - _hands.global_position) * arm_speed
