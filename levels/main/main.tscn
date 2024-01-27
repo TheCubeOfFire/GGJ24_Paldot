@@ -23,6 +23,11 @@ size = Vector2(243.125, 20)
 script = ExtResource("1_hvth3")
 pie = ExtResource("1_k3k2v")
 
+[node name="Level" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("3_hxh2g")
+metadata/_edit_lock_ = true
+
 [node name="pie_spawn_timer" type="Timer" parent="."]
 wait_time = 0.5
 
@@ -30,11 +35,6 @@ wait_time = 0.5
 curve = SubResource("Curve2D_7vpxj")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-
-[node name="Level" type="Sprite2D" parent="."]
-position = Vector2(576, 320)
-texture = ExtResource("3_hxh2g")
-metadata/_edit_lock_ = true
 
 [node name="plateforms" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
