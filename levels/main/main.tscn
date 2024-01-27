@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=8 format=3 uid="uid://dljve441yjm5y"]
 
 [ext_resource type="Script" path="res://levels/main/main.gd" id="1_hvth3"]
 [ext_resource type="PackedScene" uid="uid://bbiotug5px8wx" path="res://pie/pie.tscn" id="1_k3k2v"]
@@ -10,8 +10,14 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_btra1"]
-size = Vector2(20, 243.125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un08l"]
+size = Vector2(243.125, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ru8"]
+size = Vector2(243.125, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ktj5"]
+size = Vector2(243.125, 20)
 
 [node name="main" type="Node"]
 script = ExtResource("1_hvth3")
@@ -28,31 +34,30 @@ curve = SubResource("Curve2D_7vpxj")
 [node name="Level" type="Sprite2D" parent="."]
 position = Vector2(576, 320)
 texture = ExtResource("3_hxh2g")
+metadata/_edit_lock_ = true
 
 [node name="plateforms" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="plateform_left" type="StaticBody2D" parent="plateforms"]
+position = Vector2(211, 462)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_left"]
-position = Vector2(211, 462)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_btra1")
+shape = SubResource("RectangleShape2D_un08l")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="plateform_midle" type="StaticBody2D" parent="plateforms"]
+position = Vector2(575, 400)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_midle"]
-position = Vector2(575, 400)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_btra1")
+shape = SubResource("RectangleShape2D_g6ru8")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="plateform_right" type="StaticBody2D" parent="plateforms"]
+position = Vector2(943, 512)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="plateforms/plateform_right"]
-position = Vector2(943, 512)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_btra1")
+shape = SubResource("RectangleShape2D_8ktj5")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
