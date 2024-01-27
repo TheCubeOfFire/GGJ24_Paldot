@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyfmtjmnc0j04"
-path="res://.godot/imported/shoulder_left.png-31ea3615e6a5b6d02ceed505f959e264.ctex"
+uid="uid://by4lw00yfauya"
+path="res://.godot/imported/level.png-da50df8f2359b01b6e9475f071402e6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/shoulder_left.png"
-dest_files=["res://.godot/imported/shoulder_left.png-31ea3615e6a5b6d02ceed505f959e264.ctex"]
+source_file="res://levels/main/level.png"
+dest_files=["res://.godot/imported/level.png-da50df8f2359b01b6e9475f071402e6a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m1sfnqym5jqy"
-path="res://.godot/imported/clown_idle4.png-99fd87f7a162ea7da696411f5b044163.ctex"
+uid="uid://c834fi1snhcff"
+path="res://.godot/imported/pie.png-c1f6dd42c2a6a00e805a5bbbbbb498e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/clown_idle4.png"
-dest_files=["res://.godot/imported/clown_idle4.png-99fd87f7a162ea7da696411f5b044163.ctex"]
+source_file="res://pie/pie.png"
+dest_files=["res://.godot/imported/pie.png-c1f6dd42c2a6a00e805a5bbbbbb498e4.ctex"]
 
 [params]
 

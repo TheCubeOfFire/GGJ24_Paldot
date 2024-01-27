@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd4v5tgkh0mnr"
-path="res://.godot/imported/arm_right_open.png-1f31d7cd8535ac858626bd1b1a4e07be.ctex"
+uid="uid://c5s0m310sq7vy"
+path="res://.godot/imported/clown_idle3.png-3926d94ce831cdc753f0c75de8aa2c49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/arm_right_open.png"
-dest_files=["res://.godot/imported/arm_right_open.png-1f31d7cd8535ac858626bd1b1a4e07be.ctex"]
+source_file="res://player/sprites/clown_idle3.png"
+dest_files=["res://.godot/imported/clown_idle3.png-3926d94ce831cdc753f0c75de8aa2c49.ctex"]
 
 [params]
 

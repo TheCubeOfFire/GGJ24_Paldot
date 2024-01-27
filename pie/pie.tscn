@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbiotug5px8wx"]
 
-[ext_resource type="Texture2D" uid="uid://c834fi1snhcff" path="res://assets/image/pie.png" id="1_lyasq"]
+[ext_resource type="Texture2D" uid="uid://c834fi1snhcff" path="res://pie/pie.png" id="1_lyasq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0xe2"]
 radius = 28.0

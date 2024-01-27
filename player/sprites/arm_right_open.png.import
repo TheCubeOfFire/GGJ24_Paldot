@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c834fi1snhcff"
-path="res://.godot/imported/pie.png-8876ba795700963b779ba70f86072932.ctex"
+uid="uid://bd4v5tgkh0mnr"
+path="res://.godot/imported/arm_right_open.png-95571fe71f06c552c09fc22ca8679972.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/pie.png"
-dest_files=["res://.godot/imported/pie.png-8876ba795700963b779ba70f86072932.ctex"]
+source_file="res://player/sprites/arm_right_open.png"
+dest_files=["res://.godot/imported/arm_right_open.png-95571fe71f06c552c09fc22ca8679972.ctex"]
 
 [params]
 
