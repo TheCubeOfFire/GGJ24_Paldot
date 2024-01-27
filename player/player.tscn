@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bww58mn12tq4o"]
+[gd_scene load_steps=20 format=3 uid="uid://bww58mn12tq4o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xu54"]
 [ext_resource type="Texture2D" uid="uid://bov30svyjbifg" path="res://player/sprites/clown_idle1.png" id="2_o02c7"]
@@ -76,6 +76,11 @@ modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_xya8f")
 modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_03ii1")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tgd8w"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3cfui"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_14lm2"]
 
 [node name="Player" type="CharacterBody2D"]
@@ -128,6 +133,11 @@ texture = ExtResource("8_duqr4")
 position = Vector2(41.0004, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
+position = Vector2(20, -1)
+rotation = -1.57079
+texture = ExtResource("7_li421")
+
 [node name="RightHand" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
 position = Vector2(29, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
@@ -135,10 +145,21 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
-position = Vector2(22.88, 0)
-rotation = -1.57079
-texture = ExtResource("7_li421")
+[node name="Area2D" type="Area2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand"]
+position = Vector2(4, 0)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand/Area2D"]
+shape = SubResource("CircleShape2D_tgd8w")
+debug_color = Color(0.67451, 0.305882, 1, 0.419608)
+
+[node name="RightHandAttachment" type="CharacterBody2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand/Area2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand/Area2D/RightHandAttachment"]
+shape = SubResource("CircleShape2D_3cfui")
 
 [node name="LeftShoulder" type="Bone2D" parent="Skeleton2D/Body"]
 position = Vector2(117, -0.999167)
@@ -158,6 +179,11 @@ texture = ExtResource("8_1h8jc")
 position = Vector2(39, 0.000281119)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
+position = Vector2(16.0001, -1.99986)
+rotation = -1.57079
+texture = ExtResource("7_j66ou")
+
 [node name="LeftHand" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
 position = Vector2(25, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 1.20005e-05)
@@ -165,10 +191,22 @@ auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
-position = Vector2(21, 0)
-rotation = -1.20079
-texture = ExtResource("7_j66ou")
+[node name="Area2D" type="Area2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand"]
+position = Vector2(4, 0)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D"]
+shape = SubResource("CircleShape2D_tgd8w")
+debug_color = Color(0.67451, 0.305882, 1, 0.419608)
+
+[node name="LeftHandAttachment" type="CharacterBody2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D"]
+position = Vector2(7.62939e-06, -1)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D/LeftHandAttachment"]
+shape = SubResource("CircleShape2D_3cfui")
 
 [node name="Hands" type="RigidBody2D" parent="."]
 collision_layer = 16
