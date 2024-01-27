@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://bww58mn12tq4o"]
+[gd_scene load_steps=18 format=3 uid="uid://bww58mn12tq4o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xu54"]
 [ext_resource type="Texture2D" uid="uid://bov30svyjbifg" path="res://player/sprites/clown_idle1.png" id="2_o02c7"]
-[ext_resource type="Texture2D" uid="uid://bt3srmld0q2iw" path="res://player/sprites/clown_idle2.png" id="3_el27u"]
-[ext_resource type="Texture2D" uid="uid://c5s0m310sq7vy" path="res://player/sprites/clown_idle3.png" id="4_hskoj"]
-[ext_resource type="Texture2D" uid="uid://m1sfnqym5jqy" path="res://player/sprites/clown_idle4.png" id="5_rwadi"]
+[ext_resource type="Texture2D" uid="uid://bnlq0t1xkxcv3" path="res://player/sprites/clown_idle2.png" id="3_5nv7x"]
+[ext_resource type="Texture2D" uid="uid://bt3srmld0q2iw" path="res://player/sprites/clown_idle3.png" id="3_el27u"]
+[ext_resource type="Texture2D" uid="uid://m1sfnqym5jqy" path="res://player/sprites/clown_idle6.png" id="5_8ecvj"]
+[ext_resource type="Texture2D" uid="uid://c5s0m310sq7vy" path="res://player/sprites/clown_idle4.png" id="5_rwadi"]
+[ext_resource type="Texture2D" uid="uid://c8ex5l5fdgh58" path="res://player/sprites/clown_idle5.png" id="6_g7upn"]
 [ext_resource type="Texture2D" uid="uid://bd4v5tgkh0mnr" path="res://player/sprites/arm_right_open.png" id="7_j66ou"]
 [ext_resource type="Texture2D" uid="uid://dupves6i35chc" path="res://player/sprites/arm_left_open.png" id="7_li421"]
 [ext_resource type="Texture2D" uid="uid://c767htnwkxxec" path="res://player/sprites/shoulder_right.png" id="8_1h8jc"]
@@ -17,16 +19,33 @@ animations = [{
 "texture": ExtResource("2_o02c7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_el27u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_hskoj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_rwadi")
+"texture": ExtResource("6_g7upn")
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o02c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5nv7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_el27u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rwadi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g7upn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8ecvj")
+}],
+"loop": true,
+"name": &"Move",
 "speed": 10.0
 }]
 
@@ -35,6 +54,7 @@ radius = 38.0
 height = 182.0
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_xya8f"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../Hands")
 joint_one_bone_idx = 2
 joint_one_bone2d_node = NodePath("Body/RightShoulder/RightArm")
@@ -42,6 +62,7 @@ joint_two_bone_idx = 3
 joint_two_bone2d_node = NodePath("Body/RightShoulder/RightArm/RightForearm")
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_03ii1"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../Hands")
 flip_bend_direction = true
 joint_one_bone_idx = 6
@@ -50,6 +71,7 @@ joint_two_bone_idx = 7
 joint_two_bone2d_node = NodePath("Body/LeftShoulder/LeftArm/LeftForearm")
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_0d7f0"]
+resource_local_to_scene = true
 modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_xya8f")
 modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_03ii1")
@@ -68,6 +90,7 @@ speed = 200.0
 position = Vector2(2, -100)
 sprite_frames = SubResource("SpriteFrames_qjv5d")
 animation = &"Idle"
+frame_progress = 0.927649
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -91)
@@ -88,16 +111,21 @@ rotation = -1.5708
 rest = Transform2D(-3.61999e-06, -1, 1, -3.61999e-06, 0, 65)
 
 [node name="RightShoulder" type="Bone2D" parent="Skeleton2D/Body"]
-position = Vector2(129, 5.63877e-06)
+position = Vector2(122, -0.999558)
 rotation = 1.5708
 rest = Transform2D(-3.61999e-06, 1, -1, -3.61999e-06, 129, 5.63877e-06)
 
 [node name="RightArm" type="Bone2D" parent="Skeleton2D/Body/RightShoulder"]
-position = Vector2(30.0005, -4)
+position = Vector2(31, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
+position = Vector2(21, 0)
+rotation = -2.31082
+texture = ExtResource("8_duqr4")
+
 [node name="RightForearm" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
-position = Vector2(30, 0)
+position = Vector2(41.0004, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
 [node name="RightHand" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
@@ -108,44 +136,39 @@ length = 16.0
 bone_angle = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
-position = Vector2(20, -1)
+position = Vector2(22.88, 0)
 rotation = -1.57079
 texture = ExtResource("7_li421")
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
-position = Vector2(13, -3)
-rotation = -0.785397
-texture = ExtResource("8_duqr4")
-
 [node name="LeftShoulder" type="Bone2D" parent="Skeleton2D/Body"]
-position = Vector2(129, 5.63877e-06)
+position = Vector2(117, -0.999167)
 rotation = -1.5708
 rest = Transform2D(-3.61999e-06, -1, 1, -3.61999e-06, 129, 5.63877e-06)
 
 [node name="LeftArm" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder"]
-position = Vector2(33.9995, 2.00025)
+position = Vector2(31, 0.000226545)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
+position = Vector2(19, 0.000134826)
+rotation = -2.40676
+texture = ExtResource("8_1h8jc")
+
 [node name="LeftForearm" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
-position = Vector2(29, -8.99982)
+position = Vector2(39, 0.000281119)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
 [node name="LeftHand" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
-position = Vector2(25, -3.99982)
+position = Vector2(25, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 1.20005e-05)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
-position = Vector2(16.0001, -1.99985)
-rotation = -1.57079
+position = Vector2(21, 0)
+rotation = -1.20079
 texture = ExtResource("7_j66ou")
-
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
-position = Vector2(13, -0.999906)
-rotation = -2.40676
-texture = ExtResource("8_1h8jc")
 
 [node name="Hands" type="RigidBody2D" parent="."]
 collision_layer = 16
