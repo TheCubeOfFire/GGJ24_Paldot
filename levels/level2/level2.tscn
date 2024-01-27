@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://e66fd4b578w4"]
+[gd_scene load_steps=14 format=3 uid="uid://e66fd4b578w4"]
 
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_j1xn2"]
 [ext_resource type="PackedScene" uid="uid://b41bff1dg5h76" path="res://levels/level2/level2_scene.tscn" id="5_1qud5"]
 [ext_resource type="PackedScene" uid="uid://hjd060tsaiy" path="res://player/player2.tscn" id="5_5s11d"]
 [ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="6_2vkav"]
+[ext_resource type="AudioStream" uid="uid://dd853jtynf52o" path="res://music/main_themeV1.wav" id="6_dcjm5"]
 [ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="7_s0hig"]
+[ext_resource type="Script" path="res://music/loop_music.gd" id="7_t8gwt"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -113,12 +115,18 @@ wait_time = 2.0
 position = Vector2(556, 284)
 scale = Vector2(1, 1)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dcjm5")
+autoplay = true
+script = ExtResource("7_t8gwt")
+
 [connection signal="created" from="Level_plateform_AnimatableBody2D_CollisionShape2D#SpawnerLeft" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]
 [connection signal="created" from="Spawners/SpawnerMidle" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="Spawners/pie_spawn_timer" to="Spawners" method="_on_pie_spawn_timer_timeout"]
 [connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 
 [editable path="Level"]
 [editable path="Level/plateform1"]
