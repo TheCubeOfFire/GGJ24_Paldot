@@ -7,16 +7,13 @@ radius = 28.0
 height = 92.0
 
 [node name="pie_body" type="RigidBody2D"]
-position = Vector2(-45, -45)
+collision_layer = 8
+collision_mask = 11
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(45.75, 46.75)
 scale = Vector2(0.193582, 0.193582)
 texture = ExtResource("1_lyasq")
 
-[node name="Node" type="Node" parent="Sprite2D"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(45.75, 44.75)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o0xe2")
