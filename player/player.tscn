@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bww58mn12tq4o"]
+[gd_scene load_steps=22 format=3 uid="uid://bww58mn12tq4o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xu54"]
+[ext_resource type="Material" uid="uid://b4506uqmkhp7q" path="res://player/player.tres" id="2_jv5kn"]
 [ext_resource type="Texture2D" uid="uid://bov30svyjbifg" path="res://player/sprites/player1/clown_idle1.png" id="2_o02c7"]
 [ext_resource type="Texture2D" uid="uid://bnlq0t1xkxcv3" path="res://player/sprites/player1/clown_idle2.png" id="3_5nv7x"]
 [ext_resource type="Texture2D" uid="uid://bt3srmld0q2iw" path="res://player/sprites/player1/clown_idle3.png" id="3_el27u"]
@@ -83,6 +84,10 @@ radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_14lm2"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avige"]
+radius = 32.1367
+height = 156.774
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 collision_layer = 4
@@ -94,6 +99,7 @@ speed = 500.0
 falling_gravity_multiplier = 1.0
 
 [node name="BodyAnimSprite" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_jv5kn")
 position = Vector2(2, -100)
 sprite_frames = SubResource("SpriteFrames_qjv5d")
 animation = &"Idle"
@@ -127,6 +133,7 @@ position = Vector2(31, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
+material = ExtResource("2_jv5kn")
 position = Vector2(21, 0)
 rotation = -2.31082
 texture = ExtResource("8_duqr4")
@@ -136,6 +143,7 @@ position = Vector2(41.0004, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
+material = ExtResource("2_jv5kn")
 position = Vector2(20, -1)
 rotation = -1.57079
 texture = ExtResource("7_li421")
@@ -173,6 +181,7 @@ position = Vector2(31, 0.000226545)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
+material = ExtResource("2_jv5kn")
 position = Vector2(19, 0.000134826)
 rotation = -2.40676
 texture = ExtResource("8_1h8jc")
@@ -182,6 +191,7 @@ position = Vector2(39, 0.000281119)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
+material = ExtResource("2_jv5kn")
 position = Vector2(16.0001, -1.99986)
 rotation = -1.57079
 texture = ExtResource("7_j66ou")
@@ -217,3 +227,15 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hands"]
 shape = SubResource("CircleShape2D_14lm2")
 debug_color = Color(0.992157, 0, 0.258824, 0.419608)
+
+[node name="PieDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PieDetector"]
+position = Vector2(-3, -102)
+rotation = 0.0785398
+shape = SubResource("CapsuleShape2D_avige")
+debug_color = Color(0.784314, 0.431373, 0, 0.419608)
+
+[connection signal="body_entered" from="PieDetector" to="." method="_on_pie_detector_body_entered"]

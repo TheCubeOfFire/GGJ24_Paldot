@@ -17,7 +17,7 @@ extends CharacterBody2D
 @export_range(0.0, 10.0, 0.1) var falling_gravity_multiplier := 2.0
 
 
-var _grabbed_pie: RigidBody2D = null
+var _grabbed_pie: Pie = null
 var _left_grabbed_pie_joint: Joint2D = null
 var _right_grabbed_pie_joint: Joint2D = null
 
@@ -29,12 +29,18 @@ var _right_grabbed_pie_joint: Joint2D = null
 @onready var _hands: RigidBody2D = $Hands
 
 @onready var _body_anim_sprite: AnimatedSprite2D = $BodyAnimSprite
+@onready var _right_arm_sprite: Sprite2D = $Skeleton2D/Body/RightShoulder/RightArm/Sprite2D
+@onready var _right_forearm_sprite: Sprite2D = $Skeleton2D/Body/RightShoulder/RightArm/RightForearm/Sprite2D
+@onready var _left_arm_sprite: Sprite2D = $Skeleton2D/Body/LeftShoulder/LeftArm/Sprite2D
+@onready var _left_forearm_sprite: Sprite2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/Sprite2D
 
 @onready var _right_hand_area: Area2D = $Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand/Area2D
 @onready var _left_hand_area: Area2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D
 
 @onready var _right_hand_attachment: CharacterBody2D = $Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand/Area2D/RightHandAttachment
 @onready var _left_hand_attachment: CharacterBody2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D/LeftHandAttachment
+
+@onready var pie_detector: Area2D = $PieDetector
 
 
 func _ready() -> void:
@@ -113,7 +119,7 @@ func _grab() -> void:
 	pie_nodes.append_array(_right_hand_area.get_overlapping_bodies())
 
 	pie_nodes = pie_nodes.filter(func(pie_node: Node2D) -> bool:
-		return is_instance_of(pie_node, RigidBody2D)
+		return is_instance_of(pie_node, Pie)
 	)
 
 	if pie_nodes.is_empty():
@@ -149,4 +155,40 @@ func _ungrab() -> void:
 	if is_instance_valid(_grabbed_pie):
 		#add the floor layer for the collisions when ungrabbed
 		_grabbed_pie.collision_mask |= 1 << 0
+		_grabbed_pie.launch()
 		_grabbed_pie = null
+
+
+func _on_pie_detector_body_entered(body: Node2D) -> void:
+	if not is_instance_of(body, Pie):
+		return
+
+	var pie := body as Pie
+	if not pie.is_launched:
+		return
+
+	_animate_cream()
+
+
+func _animate_cream() -> void:
+	var cream_covered_parts: Array[CanvasItem] = [
+		_body_anim_sprite,
+		_left_arm_sprite,
+		_left_forearm_sprite,
+		_right_arm_sprite,
+		_right_forearm_sprite
+	]
+
+	var shader_materials: Array[ShaderMaterial] = []
+
+	for part: CanvasItem in cream_covered_parts:
+		assert(is_instance_of(part.material, ShaderMaterial))
+		var shader_material := part.material as ShaderMaterial
+		shader_material.set_shader_parameter("cream_quantity", 1.0)
+		shader_materials.append(shader_material)
+
+	var cream_tween := create_tween()
+	cream_tween.set_parallel(true)
+	for shader_material: ShaderMaterial in shader_materials:
+		cream_tween.tween_property(shader_material, "shader_parameter/cream_quantity", 0.0, 2.0)
+	await cream_tween.finished

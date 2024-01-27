@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b4506uqmkhp7q"]
+
+[ext_resource type="Shader" path="res://player/player.gdshader" id="1_ymd06"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ymd06")
+shader_parameter/cream_quantity = 0.0
