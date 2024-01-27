@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dljve441yjm5y"]
+[gd_scene load_steps=16 format=3 uid="uid://dljve441yjm5y"]
 
+[ext_resource type="Script" path="res://levels/main/main.gd" id="1_8bs7f"]
 [ext_resource type="Texture2D" uid="uid://esf657rouvio" path="res://levels/main/level.png" id="3_hxh2g"]
 [ext_resource type="PackedScene" uid="uid://pyiqwxhvvwut" path="res://plateform/trapeze_plateform.tscn" id="3_sawlf"]
 [ext_resource type="PackedScene" uid="uid://jmaiqea26w0w" path="res://plateform/round_plateform.tscn" id="4_vgkc4"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_xsci7"]
 [ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="5_67ms5"]
 [ext_resource type="PackedScene" uid="uid://hjd060tsaiy" path="res://player/player2.tscn" id="5_ir8m7"]
+[ext_resource type="PackedScene" uid="uid://d1r3n3c6vecbe" path="res://time_manager/time_manager.tscn" id="8_poucx"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -35,7 +37,8 @@ func _on_body_entered(body: Node2D) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfuy0"]
 size = Vector2(1312, 80)
 
-[node name="main" type="Node"]
+[node name="Main" type="Node"]
+script = ExtResource("1_8bs7f")
 
 [node name="Level" type="Node" parent="."]
 
@@ -125,9 +128,12 @@ position = Vector2(617, 235)
 [node name="pie_spawn_timer" type="Timer" parent="Spawners"]
 wait_time = 2.0
 
+[node name="TimeManager" parent="." instance=ExtResource("8_poucx")]
+
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]
 [connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]
 [connection signal="created" from="Spawners/SpawnerLeft" to="Spawners" method="_on_pie_created"]
 [connection signal="created" from="Spawners/SpawnerMidle" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="Spawners/pie_spawn_timer" to="Spawners" method="_on_pie_spawn_timer_timeout"]
+[connection signal="level_timeout" from="TimeManager" to="." method="_on_time_manager_level_timeout"]
