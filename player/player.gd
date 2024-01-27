@@ -11,27 +11,29 @@ extends CharacterBody2D
 
 
 # Target of the arms
-@onready var _target: Marker2D = $Target
+@onready var _arms_target: Marker2D = $ArmsOrigin/ArmsTarget
 
 @onready var _skeleton_2d: Skeleton2D = $Skeleton2D
 
 @onready var _hands: RigidBody2D = $Hands
 
+@onready var _body_anim_sprite: AnimatedSprite2D = $BodyAnimSprite
+
 
 func _ready() -> void:
 	_skeleton_2d.get_modification_stack().enabled = true
-	_target.position = Vector2.RIGHT * max_target_distance
-	$BodyAnimSprite.play("Idle")
+	_arms_target.position = Vector2.RIGHT * max_target_distance
+	_body_anim_sprite.play("Idle")
 
 
 func _physics_process(delta: float) -> void:
 	var input_vector := Input.get_vector("arm_left", "arm_right", "arm_up", "arm_down")
 	if not input_vector.is_zero_approx():
-		_target.position = input_vector.normalized() * max_target_distance
+		_arms_target.position = input_vector.normalized() * max_target_distance
 
 	var h_speed := speed * Input.get_axis("move_left", "move_right")
 	velocity = Vector2(h_speed, 0.0)
 
-	_hands.linear_velocity = (_target.position - _hands.position) * arm_speed
+	_hands.linear_velocity = (_arms_target.position - _hands.position) * arm_speed
 
 	move_and_slide()

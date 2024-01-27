@@ -73,7 +73,10 @@ animation = &"Idle"
 position = Vector2(-1, -91)
 shape = SubResource("CapsuleShape2D_0s5gp")
 
-[node name="Target" type="Marker2D" parent="."]
+[node name="ArmsOrigin" type="Marker2D" parent="."]
+position = Vector2(0, -128)
+
+[node name="ArmsTarget" type="Marker2D" parent="ArmsOrigin"]
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 position = Vector2(-1, -64)
