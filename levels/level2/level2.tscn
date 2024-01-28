@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://e66fd4b578w4"]
+[gd_scene load_steps=14 format=3 uid="uid://e66fd4b578w4"]
 
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_j1xn2"]
 [ext_resource type="PackedScene" uid="uid://b41bff1dg5h76" path="res://levels/level2/level2_scene.tscn" id="5_1qud5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="6_2vkav"]
 [ext_resource type="PackedScene" uid="uid://d1r3n3c6vecbe" path="res://time_manager/time_manager.tscn" id="6_pnylx"]
 [ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="7_s0hig"]
+[ext_resource type="PackedScene" uid="uid://86tfhbtkfs7g" path="res://menus/pause_menu.tscn" id="7_slac0"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -47,7 +48,7 @@ scale = Vector2(3.69898, 3.69898)
 remote_path = NodePath("../../../../Spawners/SpawnerRight")
 
 [node name="PathFollow1" parent="Level/AnimatedPlatform" index="0"]
-position = Vector2(969.747, 186.752)
+position = Vector2(969.745, 186.753)
 progress = 1751.81
 
 [node name="PathFollow2" parent="Level/AnimatedPlatform" index="1"]
@@ -138,6 +139,8 @@ position = Vector2(104.424, 143.528)
 scale = Vector2(0.236505, 0.240885)
 
 [node name="TimeManager" parent="." instance=ExtResource("6_pnylx")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_slac0")]
 
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]
