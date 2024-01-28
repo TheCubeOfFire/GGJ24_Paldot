@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ol8yqvgp7dw5"]
+[gd_scene load_steps=4 format=3 uid="uid://ol8yqvgp7dw5"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_x5sxb"]
 [ext_resource type="PackedScene" uid="uid://dljve441yjm5y" path="res://levels/main/main.tscn" id="2_iax5a"]
+[ext_resource type="PackedScene" uid="uid://e66fd4b578w4" path="res://levels/level2/level2.tscn" id="3_lhfi4"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,7 +12,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x5sxb")
-main_level = ExtResource("2_iax5a")
+level1 = ExtResource("2_iax5a")
+level2 = ExtResource("3_lhfi4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -28,18 +30,23 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ButtonPlay" type="Button" parent="VBoxContainer"]
+[node name="ButtonLevel1" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "Level 1"
 
-[node name="ButtonSettings" type="Button" parent="VBoxContainer"]
+[node name="ButtonLevel2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Settings"
+text = "Level 2"
+
+[node name="ButtonCredits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Credits"
 
 [node name="ButtonQuit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonLevel1" to="." method="_on_button_level1_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonLevel2" to="." method="_on_button_level2_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonCredits" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
