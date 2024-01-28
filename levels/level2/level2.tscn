@@ -47,7 +47,7 @@ scale = Vector2(3.69898, 3.69898)
 remote_path = NodePath("../../../../Spawners/SpawnerRight")
 
 [node name="PathFollow1" parent="Level/AnimatedPlatform" index="0"]
-position = Vector2(969.745, 186.753)
+position = Vector2(969.747, 186.752)
 progress = 1751.81
 
 [node name="PathFollow2" parent="Level/AnimatedPlatform" index="1"]

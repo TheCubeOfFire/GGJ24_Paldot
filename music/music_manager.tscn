@@ -3,5 +3,6 @@
 [ext_resource type="AudioStream" uid="uid://d4ifkekk0fgbu" path="res://music/main_themeV3.wav" id="1_g3dg7"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_g3dg7")
 autoplay = true
