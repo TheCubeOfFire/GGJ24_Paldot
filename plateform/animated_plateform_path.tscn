@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0kfeti51buiy"]
+
+[ext_resource type="Texture2D" uid="uid://0g2gp7uiussd" path="res://plateform/trapeze.png" id="1_cetgk"]
+
+[sub_resource type="Curve2D" id="Curve2D_hdx7s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 25, 146, 0, 0, 0, 0, 76, 260, 0, 0, 0, 0, 121, 369, 0, 0, 0, 0, 196, 462, 0, 0, 0, 0, 298, 482, 0, 0, 0, 0, 456, 473, 0, 0, 0, 0, 536, 517, 0, 0, 0, 0, 647, 578, 0, 0, 0, 0, 769, 574, 0, 0, 0, 0, 877, 575, 0, 0, 0, 0, 947, 568, 0, 0, 0, 0, 1069, 468, 0, 0, 0, 0, 1105, 410, 0, 0, 0, 0, 1103, 281, 0, 0, 0, 0, 1056, 135, 0, 0, 0, 0, 956, 195, 0, 0, 0, 0, 933, 339, 0, 0, 0, 0, 869, 436, 0, 0, 0, 0, 682, 427, 0, 0, 0, 0, 669, 264, 0, 0, 0, 0, 798, 203, 0, 0, 0, 0, 806, 95, 0, 0, 0, 0, 559, 73, 0, 0, 0, 0, 430, 109, 0, 0, 0, 0, 340, 209, 0, 0, 0, 0, 277, 206, 0, 0, 0, 0, 220, 209, 0, 0, 0, 0, 144, 126, 0, 0, 0, 0, 50, 132, 0, 0, 0, 0, 25, 146)
+}
+point_count = 30
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35tmh"]
+size = Vector2(408, 46)
+
+[sub_resource type="Animation" id="Animation_bfoul"]
+resource_name = "ANIMATION"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow1:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10, 10.001, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.5, 1.0, 0.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_f6mjv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow1:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_84so5"]
+_data = {
+"ANIMATION": SubResource("Animation_bfoul"),
+"RESET": SubResource("Animation_f6mjv")
+}
+
+[node name="AnimatedPathPlatform" type="Path2D"]
+position = Vector2(84, 39)
+scale = Vector2(0.875943, 0.892168)
+curve = SubResource("Curve2D_hdx7s")
+
+[node name="PathFollow1" type="PathFollow2D" parent="."]
+position = Vector2(334.904, 208.757)
+rotation = 2.6311
+progress = 3153.26
+rotates = false
+
+[node name="RemotePlat1" type="RemoteTransform2D" parent="PathFollow1"]
+remote_path = NodePath("../../Platform1")
+update_rotation = false
+update_scale = false
+
+[node name="PathFollow2" type="PathFollow2D" parent="."]
+position = Vector2(1104.49, 377.427)
+rotation = 2.6311
+progress = 1401.45
+rotates = false
+
+[node name="RemotePlat2" type="RemoteTransform2D" parent="PathFollow2"]
+remote_path = NodePath("../../Platform2")
+update_rotation = false
+update_scale = false
+
+[node name="Platform1" type="AnimatableBody2D" parent="."]
+position = Vector2(334.904, 208.757)
+scale = Vector2(0.27, 0.27)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform1"]
+position = Vector2(-5.7381, -362.192)
+scale = Vector2(0.350905, 0.350905)
+texture = ExtResource("1_cetgk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
+shape = SubResource("RectangleShape2D_35tmh")
+one_way_collision = true
+
+[node name="Platform2" type="AnimatableBody2D" parent="."]
+position = Vector2(1104.49, 377.427)
+scale = Vector2(0.27, 0.27)
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform2"]
+position = Vector2(-6.23501, -401.554)
+scale = Vector2(0.388423, 0.388423)
+texture = ExtResource("1_cetgk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+shape = SubResource("RectangleShape2D_35tmh")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_84so5")
+}
+autoplay = "ANIMATION"
