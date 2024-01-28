@@ -25,14 +25,23 @@ var _state := PieState.READY
 var _joint: Joint2D = null
 
 
+func _exit_tree() -> void:
+	if is_instance_valid(_joint):
+		_joint.queue_free()
+		_joint = null
+
+
 func grab(by: PhysicsBody2D) -> void:
-	if _state != PieState.READY:
-		return
+	if is_grabbed and is_instance_valid(_joint):
+		_joint.queue_free()
+		_joint = null
+
+	global_position = by.global_position
 
 	_joint = PinJoint2D.new()
 	_joint.node_a = by.get_path()
 	_joint.node_b = get_path()
-	add_child(_joint)
+	by.add_child(_joint)
 
 	_state = PieState.GRABBED
 	#remove the floor layer for the collisions when grabbed

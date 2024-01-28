@@ -133,11 +133,20 @@ func _grab() -> void:
 		_grabbed_pie = right_pie_nodes[picked_pie_index - left_pie_nodes.size()]
 		_grabbed_pie.grab(_right_hand_attachment)
 
+	_grabbed_pie.grabbed.connect(_on_pie_grabbed)
+
 
 func _ungrab() -> void:
 	if is_instance_valid(_grabbed_pie):
 		#add the floor layer for the collisions when ungrabbed
 		_grabbed_pie.launch()
+		_grabbed_pie.grabbed.disconnect(_on_pie_grabbed)
+		_grabbed_pie = null
+
+
+func _on_pie_grabbed() -> void:
+	if is_instance_valid(_grabbed_pie):
+		_grabbed_pie.grabbed.disconnect(_on_pie_grabbed)
 		_grabbed_pie = null
 
 
