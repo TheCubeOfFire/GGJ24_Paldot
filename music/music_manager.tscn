@@ -5,4 +5,5 @@
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 process_mode = 3
 stream = ExtResource("1_g3dg7")
+volume_db = -22.704
 autoplay = true

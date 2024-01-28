@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cj5cq74yb0fua"]
+
+[ext_resource type="Script" path="res://sound_manager/sound_manager.gd" id="1_pctgy"]
+[ext_resource type="AudioStream" uid="uid://1lg35rk1ckuf" path="res://sound_manager/sounds/sproutch1.mp3" id="2_171sj"]
+[ext_resource type="AudioStream" uid="uid://cqf8r0ysbfs3r" path="res://sound_manager/sounds/sproutch2.mp3" id="3_8lrr2"]
+[ext_resource type="AudioStream" uid="uid://cp5qemb40np0m" path="res://sound_manager/sounds/sproutch3.mp3" id="4_a3tnm"]
+[ext_resource type="AudioStream" uid="uid://gh27bs5wtahl" path="res://sound_manager/sounds/sproutch4.mp3" id="5_yvmdp"]
+[ext_resource type="AudioStream" uid="uid://dbxca1g1c878n" path="res://sound_manager/sounds/rires.mp3" id="6_m5snc"]
+
+[node name="SoundManager" type="Node2D" node_paths=PackedStringArray("rire")]
+script = ExtResource("1_pctgy")
+rire = NodePath("Rires")
+
+[node name="Sproutch1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_171sj")
+volume_db = 5.0
+
+[node name="Sproutch2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8lrr2")
+volume_db = 5.0
+
+[node name="Sproutch3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a3tnm")
+volume_db = 5.0
+
+[node name="Sproutch4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_yvmdp")
+volume_db = 10.0
+
+[node name="Rires" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_m5snc")

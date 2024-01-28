@@ -37,6 +37,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 
 func _exit_tree() -> void:
+	SoundManager.sproutch()
 	if is_instance_valid(_joint):
 		_joint.queue_free()
 		_joint = null
