@@ -18,8 +18,6 @@ extends CharacterBody2D
 
 
 var _grabbed_pie: Pie = null
-var _left_grabbed_pie_joint: Joint2D = null
-var _right_grabbed_pie_joint: Joint2D = null
 
 
 @onready var _arms_target: Marker2D = $ArmsOrigin/ArmsTarget
@@ -115,46 +113,28 @@ func _grab() -> void:
 	if is_instance_valid(_grabbed_pie):
 		_ungrab()
 
-	var pie_nodes := _left_hand_area.get_overlapping_bodies()
-	pie_nodes.append_array(_right_hand_area.get_overlapping_bodies())
-
-	pie_nodes = pie_nodes.filter(func(pie_node: Node2D) -> bool:
+	var is_pie := func(pie_node: Node2D) -> bool:
 		return is_instance_of(pie_node, Pie)
-	)
 
-	if pie_nodes.is_empty():
+	var left_pie_nodes := _left_hand_area.get_overlapping_bodies().filter(is_pie)
+	var right_pie_nodes := _right_hand_area.get_overlapping_bodies().filter(is_pie)
+
+	if left_pie_nodes.is_empty() and right_pie_nodes.is_empty():
 		return
 
-	_grabbed_pie = pie_nodes.pick_random() as Pie
-	_grabbed_pie.grab()
-	#remove the floor layer for the collisions when grabbed
-	_grabbed_pie.collision_mask &= ~(1 << 0)
+	var picked_pie_index := randi_range(0, left_pie_nodes.size() + right_pie_nodes.size() - 1)
 
-	var left_joint := PinJoint2D.new()
-	left_joint.node_a = _left_hand_attachment.get_path()
-	left_joint.node_b = _grabbed_pie.get_path()
-	_left_hand_attachment.add_child(left_joint)
-	_left_grabbed_pie_joint = left_joint
-
-	var right_joint := PinJoint2D.new()
-	right_joint.node_a = _right_hand_attachment.get_path()
-	right_joint.node_b = _grabbed_pie.get_path()
-	_right_hand_attachment.add_child(right_joint)
-	_right_grabbed_pie_joint = right_joint
+	if picked_pie_index < left_pie_nodes.size():
+		_grabbed_pie = left_pie_nodes[picked_pie_index]
+		_grabbed_pie.grab(_left_hand_attachment)
+	else:
+		_grabbed_pie = right_pie_nodes[picked_pie_index - left_pie_nodes.size()]
+		_grabbed_pie.grab(_right_hand_attachment)
 
 
 func _ungrab() -> void:
-	if is_instance_valid(_left_grabbed_pie_joint):
-		_left_grabbed_pie_joint.queue_free()
-		_left_grabbed_pie_joint = null
-
-	if is_instance_valid(_right_grabbed_pie_joint):
-		_right_grabbed_pie_joint.queue_free()
-		_right_grabbed_pie_joint = null
-
 	if is_instance_valid(_grabbed_pie):
 		#add the floor layer for the collisions when ungrabbed
-		_grabbed_pie.collision_mask |= 1 << 0
 		_grabbed_pie.launch()
 		_grabbed_pie = null
 
