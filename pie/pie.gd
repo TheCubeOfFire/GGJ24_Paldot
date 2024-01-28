@@ -24,6 +24,17 @@ var _state := PieState.READY
 
 var _joint: Joint2D = null
 
+var _body_to_attach: Node2D = null
+
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if is_instance_valid(_body_to_attach):
+		if is_instance_valid(_joint):
+			state.transform = Transform2D(0.0, _body_to_attach.global_position)
+			_body_to_attach.add_child.call_deferred(_joint)
+
+		_body_to_attach = null
+
 
 func _exit_tree() -> void:
 	if is_instance_valid(_joint):
@@ -36,12 +47,11 @@ func grab(by: PhysicsBody2D) -> void:
 		_joint.queue_free()
 		_joint = null
 
-	global_position = by.global_position
-
 	_joint = PinJoint2D.new()
 	_joint.node_a = by.get_path()
 	_joint.node_b = get_path()
-	by.add_child(_joint)
+
+	_body_to_attach = by
 
 	_state = PieState.GRABBED
 	#remove the floor layer for the collisions when grabbed
