@@ -4,6 +4,7 @@
 
 [node name="TimeManager" type="Node"]
 script = ExtResource("1_1rmqk")
+level_time = 60
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
