@@ -32,7 +32,8 @@ project/assembly_name="GGJ24_Paldot"
 
 [gui]
 
-theme/custom="res://global_theme.tres"
+theme/custom="res://menus/theme/global_theme.tres"
+theme/custom_font="res://menus/theme/thickhead.ttf"
 
 [input]
 

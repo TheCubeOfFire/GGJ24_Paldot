@@ -1,0 +1,38 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bsel52o4h4ocf"
+path="res://.godot/imported/thickhead.ttf-2b6582ab58796a64005840ff0e1c02be.fontdata"
+
+[deps]
+
+source_file="res://menus/theme/thickhead.ttf"
+dest_files=["res://.godot/imported/thickhead.ttf-2b6582ab58796a64005840ff0e1c02be.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[Resource("res://menus/theme/system_font.tres")]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
+language_support={}
+script_support={}
+opentype_features={}
