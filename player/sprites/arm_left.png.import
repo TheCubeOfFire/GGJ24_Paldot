@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dupves6i35chc"
-path="res://.godot/imported/arm_left_open.png-31584e5878257ef19f613c0669624511.ctex"
+uid="uid://yyhufts0oboo"
+path="res://.godot/imported/arm_left.png-676c1e470320d9de380521f0dcd2ca0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/arm_left_open.png"
-dest_files=["res://.godot/imported/arm_left_open.png-31584e5878257ef19f613c0669624511.ctex"]
+source_file="res://player/sprites/arm_left.png"
+dest_files=["res://.godot/imported/arm_left.png-676c1e470320d9de380521f0dcd2ca0a.ctex"]
 
 [params]
 

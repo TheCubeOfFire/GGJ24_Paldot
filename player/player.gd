@@ -29,10 +29,18 @@ var _grabbed_pie: Pie = null
 @onready var _hands: RigidBody2D = $Hands
 
 @onready var _body_anim_sprite: AnimatedSprite2D = $BodyAnimSprite
+
+#arm
 @onready var _right_arm_sprite: Sprite2D = $Skeleton2D/Body/RightShoulder/RightArm/Sprite2D
-@onready var _right_forearm_sprite: Sprite2D = $Skeleton2D/Body/RightShoulder/RightArm/RightForearm/Sprite2D
 @onready var _left_arm_sprite: Sprite2D = $Skeleton2D/Body/LeftShoulder/LeftArm/Sprite2D
-@onready var _left_forearm_sprite: Sprite2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/Sprite2D
+
+#forearm opened
+@onready var _right_forearm_sprite: Sprite2D = $Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHandOpened
+@onready var _left_forearm_sprite: Sprite2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHandOpened
+
+#forearm closed
+@onready var _left_forearm_sprite_closed: Sprite2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHandClose
+@onready var _right_forearm_sprite_closed: Sprite2D =$Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHandClosed
 
 @onready var _right_hand_area: Area2D = $Skeleton2D/Body/RightShoulder/RightArm/RightForearm/RightHand/Area2D
 @onready var _left_hand_area: Area2D = $Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D
@@ -111,6 +119,7 @@ func _update_vertical_speed() -> void:
 
 
 func _grab() -> void:
+	_toogle_arm_sprite()
 	if is_instance_valid(_grabbed_pie):
 		_ungrab()
 
@@ -136,6 +145,7 @@ func _grab() -> void:
 
 
 func _ungrab() -> void:
+	_toogle_arm_sprite()
 	if is_instance_valid(_grabbed_pie):
 		#add the floor layer for the collisions when ungrabbed
 		_grabbed_pie.launch()
@@ -173,7 +183,10 @@ func _animate_cream() -> void:
 		_left_arm_sprite,
 		_left_forearm_sprite,
 		_right_arm_sprite,
-		_right_forearm_sprite
+		_right_forearm_sprite,
+		_left_forearm_sprite_closed,
+		_right_forearm_sprite_closed
+
 	]
 
 	var shader_materials: Array[ShaderMaterial] = []
@@ -189,3 +202,12 @@ func _animate_cream() -> void:
 	for shader_material: ShaderMaterial in shader_materials:
 		cream_tween.tween_property(shader_material, "shader_parameter/cream_quantity", 0.0, cream_disappear_time)
 	await cream_tween.finished
+
+
+func _toogle_arm_sprite() ->void:
+	_left_forearm_sprite_closed.visible = not _left_forearm_sprite_closed.visible
+	_left_forearm_sprite.visible = not _left_forearm_sprite.visible
+	_right_forearm_sprite.visible = not _right_forearm_sprite.visible
+	_right_forearm_sprite_closed.visible = not _right_forearm_sprite_closed.visible
+
+

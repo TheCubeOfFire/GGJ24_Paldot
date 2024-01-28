@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://hjd060tsaiy"]
+[gd_scene load_steps=15 format=3 uid="uid://hjd060tsaiy"]
 
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="1_c3mry"]
 [ext_resource type="Texture2D" uid="uid://bwgl3a0e4suui" path="res://player/sprites/player2/clown_idle1_B.png" id="2_44061"]
@@ -74,6 +74,11 @@ modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_otu5u")
 modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_wdimg")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l37eq"]
+resource_local_to_scene = true
+shader = ExtResource("2_usuyd")
+shader_parameter/cream_quantity = 0.0
+
 [node name="Player" instance=ExtResource("1_c3mry")]
 
 [node name="BodyAnimSprite" parent="." index="0"]
@@ -89,14 +94,20 @@ modification_stack = SubResource("SkeletonModificationStack2D_wn7ol")
 [node name="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm" index="0"]
 material = SubResource("ShaderMaterial_72co7")
 
-[node name="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm" index="0"]
-material = SubResource("ShaderMaterial_72co7")
+[node name="RightHandOpened" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm" index="0"]
+material = SubResource("ShaderMaterial_l37eq")
+
+[node name="RightHandClosed" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm" index="1"]
+material = SubResource("ShaderMaterial_l37eq")
 
 [node name="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm" index="0"]
 material = SubResource("ShaderMaterial_72co7")
 
-[node name="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm" index="0"]
-material = SubResource("ShaderMaterial_72co7")
+[node name="LeftHandOpened" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm" index="0"]
+material = SubResource("ShaderMaterial_l37eq")
+
+[node name="LeftHandClose" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm" index="1"]
+material = SubResource("ShaderMaterial_l37eq")
 
 [node name="CollisionShape2D" parent="PieDetector" index="0"]
 position = Vector2(0, -102)
