@@ -37,14 +37,30 @@ size = Vector2(1312, 80)
 
 [node name="main2" type="Node"]
 
-[node name="Level_plateform_AnimatableBody2D_CollisionShape2D#SpawnerLeft" parent="." instance=ExtResource("7_s0hig")]
-position = Vector2(552, 318)
-
 [node name="Level" parent="." instance=ExtResource("5_1qud5")]
+
+[node name="plateform1" parent="Level" index="1"]
+process_mode = 4
 
 [node name="Level_plateform_AnimatableBody2D#RemoteTransform2D" type="RemoteTransform2D" parent="Level/plateform1/AnimatableBody2D" index="3"]
 position = Vector2(22.1319, -167.857)
 scale = Vector2(3.69898, 3.69898)
+remote_path = NodePath("../../../../Spawners/SpawnerRight")
+
+[node name="PathFollow1" parent="Level/AnimatedPlatform" index="0"]
+position = Vector2(969.745, 186.753)
+progress = 1751.81
+
+[node name="PathFollow2" parent="Level/AnimatedPlatform" index="1"]
+position = Vector2(25, 146)
+progress = 0.0
+
+[node name="RemoteSpawner1" type="RemoteTransform2D" parent="Level/AnimatedPlatform/Platform1" index="2"]
+position = Vector2(-1.50985, -96.5049)
+remote_path = NodePath("../../../../Spawners/SpawnerMidle")
+
+[node name="RemoteSpawner2" type="RemoteTransform2D" parent="Level/AnimatedPlatform/Platform2" index="2"]
+position = Vector2(-6.23501, -106.808)
 remote_path = NodePath("../../../../Spawners/SpawnerRight")
 
 [node name="Players" type="Node2D" parent="."]
@@ -103,24 +119,24 @@ metadata/_edit_lock_ = true
 
 [node name="Spawners" type="Node" parent="."]
 script = ExtResource("6_2vkav")
-spawner_paths = Array[NodePath]([NodePath("SpawnerRight")])
+spawner_paths = Array[NodePath]([NodePath("SpawnerRight"), NodePath("SpawnerMidle")])
 
 [node name="SpawnerMidle" parent="Spawners" instance=ExtResource("7_s0hig")]
-position = Vector2(617, 235)
+position = Vector2(377, 202)
+scale = Vector2(0.236505, 0.240885)
 
 [node name="pie_spawn_timer" type="Timer" parent="Spawners"]
 wait_time = 2.0
 
 [node name="SpawnerRight" parent="Spawners" instance=ExtResource("7_s0hig")]
-position = Vector2(556, 284)
-scale = Vector2(1, 1)
+position = Vector2(1050, 350)
+scale = Vector2(0.236505, 0.240885)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_dcjm5")
 autoplay = true
 script = ExtResource("7_t8gwt")
 
-[connection signal="created" from="Level_plateform_AnimatableBody2D_CollisionShape2D#SpawnerLeft" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]
 [connection signal="created" from="Spawners/SpawnerMidle" to="Spawners" method="_on_pie_created"]
@@ -130,3 +146,4 @@ script = ExtResource("7_t8gwt")
 
 [editable path="Level"]
 [editable path="Level/plateform1"]
+[editable path="Level/AnimatedPlatform"]
