@@ -1,19 +1,46 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cl2u2fh5lx7m8"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cl2u2fh5lx7m8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2jst"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+[ext_resource type="Texture2D" uid="uid://baa6krpgpkjvo" path="res://menus/theme/button_light.png" id="1_ix046"]
+[ext_resource type="Texture2D" uid="uid://bmctrtd4uhtgr" path="res://menus/theme/button.png" id="2_wutga"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hhmf"]
-bg_color = Color(0.298039, 0.32549, 0.368627, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b83k8"]
+texture = ExtResource("1_ix046")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgeeu"]
-bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s7ruk"]
+texture = ExtResource("1_ix046")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm8wf"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdnik"]
+texture = ExtResource("2_wutga")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w3bm6"]
+texture = ExtResource("1_ix046")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
 
 [resource]
-Button/styles/disabled = SubResource("StyleBoxFlat_q2jst")
-Button/styles/hover = SubResource("StyleBoxFlat_1hhmf")
-Button/styles/normal = SubResource("StyleBoxFlat_jgeeu")
-Button/styles/pressed = SubResource("StyleBoxFlat_cm8wf")
+Button/styles/focus = SubResource("StyleBoxTexture_b83k8")
+Button/styles/hover = SubResource("StyleBoxTexture_s7ruk")
+Button/styles/normal = SubResource("StyleBoxTexture_fdnik")
+Button/styles/pressed = SubResource("StyleBoxTexture_w3bm6")
