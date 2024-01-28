@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm4yasnq8xqki"]
+[gd_scene load_steps=3 format=3 uid="uid://dm4yasnq8xqki"]
 
 [ext_resource type="Script" path="res://menus/credits_menu.gd" id="1_ei8ys"]
+[ext_resource type="Texture2D" uid="uid://cmomeyfr2i0fn" path="res://menus/main_menu.png" id="2_ufoa3"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,6 +11,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ei8ys")
+
+[node name="MainMenu" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_ufoa3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -55,7 +60,10 @@ Niscrou: Programming
 
 Th0re: Programming / Music
 
-TheCubeOfFire: Programming"
+TheCubeOfFire: Programming
+
+Special thanks to Gostix for his contribution
+ through his magnificent voice"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]
