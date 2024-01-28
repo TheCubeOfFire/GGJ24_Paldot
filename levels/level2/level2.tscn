@@ -55,9 +55,15 @@ progress = 1751.81
 position = Vector2(25, 146)
 progress = 0.0
 
+[node name="Platform1" parent="Level/AnimatedPlatform" index="2"]
+position = Vector2(969.747, 186.752)
+
 [node name="RemoteSpawner1" type="RemoteTransform2D" parent="Level/AnimatedPlatform/Platform1" index="2"]
 position = Vector2(-1.50985, -96.5049)
 remote_path = NodePath("../../../../Spawners/SpawnerMidle")
+
+[node name="Platform2" parent="Level/AnimatedPlatform" index="3"]
+position = Vector2(25, 146)
 
 [node name="RemoteSpawner2" type="RemoteTransform2D" parent="Level/AnimatedPlatform/Platform2" index="2"]
 position = Vector2(-6.23501, -106.808)
@@ -122,14 +128,14 @@ script = ExtResource("6_2vkav")
 spawner_paths = Array[NodePath]([NodePath("SpawnerRight"), NodePath("SpawnerMidle")])
 
 [node name="SpawnerMidle" parent="Spawners" instance=ExtResource("7_s0hig")]
-position = Vector2(377, 202)
+position = Vector2(933.086, 182.368)
 scale = Vector2(0.236505, 0.240885)
 
 [node name="pie_spawn_timer" type="Timer" parent="Spawners"]
 wait_time = 2.0
 
 [node name="SpawnerRight" parent="Spawners" instance=ExtResource("7_s0hig")]
-position = Vector2(1050, 350)
+position = Vector2(104.424, 143.528)
 scale = Vector2(0.236505, 0.240885)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

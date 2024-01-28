@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bww58mn12tq4o"]
+[gd_scene load_steps=24 format=3 uid="uid://bww58mn12tq4o"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3xu54"]
 [ext_resource type="Material" uid="uid://b4506uqmkhp7q" path="res://player/player.tres" id="2_jv5kn"]
@@ -8,10 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://m1sfnqym5jqy" path="res://player/sprites/player1/clown_idle6.png" id="5_8ecvj"]
 [ext_resource type="Texture2D" uid="uid://c5s0m310sq7vy" path="res://player/sprites/player1/clown_idle4.png" id="5_rwadi"]
 [ext_resource type="Texture2D" uid="uid://c8ex5l5fdgh58" path="res://player/sprites/player1/clown_idle5.png" id="6_g7upn"]
-[ext_resource type="Texture2D" uid="uid://bd4v5tgkh0mnr" path="res://player/sprites/arm_right_open.png" id="7_j66ou"]
-[ext_resource type="Texture2D" uid="uid://dupves6i35chc" path="res://player/sprites/arm_left_open.png" id="7_li421"]
-[ext_resource type="Texture2D" uid="uid://c767htnwkxxec" path="res://player/sprites/shoulder_right.png" id="8_1h8jc"]
-[ext_resource type="Texture2D" uid="uid://cyfmtjmnc0j04" path="res://player/sprites/shoulder_left.png" id="8_duqr4"]
+[ext_resource type="Texture2D" uid="uid://yyhufts0oboo" path="res://player/sprites/arm_left.png" id="9_luv6j"]
+[ext_resource type="Texture2D" uid="uid://dsj7ouf1cm78f" path="res://player/sprites/forearm_left_open.png" id="10_auuk1"]
+[ext_resource type="Texture2D" uid="uid://uq1rva4o01au" path="res://player/sprites/arm_right.png" id="11_s4d2w"]
+[ext_resource type="Texture2D" uid="uid://heg4yye2mkti" path="res://player/sprites/forearm_left_close.png" id="11_w5bwy"]
+[ext_resource type="Texture2D" uid="uid://gp78b16kfty2" path="res://player/sprites/forearm_right_open.png" id="12_4k0dn"]
+[ext_resource type="Texture2D" uid="uid://ctyqb6t24gmco" path="res://player/sprites/forearm_right_close.png" id="14_fq18a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qjv5d"]
 animations = [{
@@ -106,6 +108,7 @@ animation = &"Idle"
 frame_progress = 0.927649
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, -91)
 shape = SubResource("CapsuleShape2D_0s5gp")
 
@@ -134,22 +137,29 @@ rest = Transform2D(1, 0, 0, 1, 64, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
 material = ExtResource("2_jv5kn")
-position = Vector2(21, 0)
-rotation = -2.31082
-texture = ExtResource("8_duqr4")
+position = Vector2(26, -0.249996)
+rotation = -0.00981903
+texture = ExtResource("9_luv6j")
 
 [node name="RightForearm" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm"]
-position = Vector2(41.0004, 0)
+position = Vector2(58.5, -0.249996)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
+[node name="RightHandOpened" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
 material = ExtResource("2_jv5kn")
-position = Vector2(20, -1)
-rotation = -1.57079
-texture = ExtResource("7_li421")
+position = Vector2(28.75, -1.25)
+rotation = -3.14576
+texture = ExtResource("10_auuk1")
+
+[node name="RightHandClosed" type="Sprite2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
+visible = false
+material = ExtResource("2_jv5kn")
+position = Vector2(28.75, -1.25)
+rotation = -3.14576
+texture = ExtResource("11_w5bwy")
 
 [node name="RightHand" type="Bone2D" parent="Skeleton2D/Body/RightShoulder/RightArm/RightForearm"]
-position = Vector2(29, 0)
+position = Vector2(48.75, 0)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -182,22 +192,29 @@ rest = Transform2D(1, 0, 0, 1, 64, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
 material = ExtResource("2_jv5kn")
-position = Vector2(19, 0.000134826)
-rotation = -2.40676
-texture = ExtResource("8_1h8jc")
+position = Vector2(24.5004, 0.250172)
+rotation = -4.76508
+texture = ExtResource("11_s4d2w")
 
 [node name="LeftForearm" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm"]
-position = Vector2(39, 0.000281119)
+position = Vector2(54.5004, 0.25039)
 rest = Transform2D(1, 0, 0, 1, 50, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
+[node name="LeftHandOpened" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
 material = ExtResource("2_jv5kn")
-position = Vector2(16.0001, -1.99986)
-rotation = -1.57079
-texture = ExtResource("7_j66ou")
+position = Vector2(26.25, 1.25019)
+rotation = -1.56658
+texture = ExtResource("12_4k0dn")
+
+[node name="LeftHandClose" type="Sprite2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
+visible = false
+material = ExtResource("2_jv5kn")
+position = Vector2(26.25, 1.25019)
+rotation = 3.14159
+texture = ExtResource("14_fq18a")
 
 [node name="LeftHand" type="Bone2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm"]
-position = Vector2(25, 0)
+position = Vector2(41.25, 0.000298878)
 rest = Transform2D(1, 0, 0, 1, 50, 1.20005e-05)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -218,6 +235,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Body/LeftShoulder/LeftArm/LeftForearm/LeftHand/Area2D/LeftHandAttachment"]
+position = Vector2(2.75042, 0.000229721)
 shape = SubResource("CircleShape2D_3cfui")
 
 [node name="Hands" type="RigidBody2D" parent="."]
@@ -229,6 +247,7 @@ shape = SubResource("CircleShape2D_14lm2")
 debug_color = Color(0.992157, 0, 0.258824, 0.419608)
 
 [node name="PieDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 8
 
