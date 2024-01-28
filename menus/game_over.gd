@@ -6,8 +6,8 @@ extends Control
 
 
 func _ready() -> void:
-	_p1_score_label.text = str(ScoreManager.p1_score)
-	_p2_score_label.text = str(ScoreManager.p2_score)
+	_p1_score_label.text = str(ScoreManager.p1_score) + " points"
+	_p2_score_label.text = str(ScoreManager.p2_score) + " points"
 
 
 func _on_main_menu_button_pressed() -> void:

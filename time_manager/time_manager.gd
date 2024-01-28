@@ -23,7 +23,7 @@ func _on_timer_timeout() -> void:
 	_time_label.text = _format_time()
 	if _remaining_time == 0:
 		_timer.stop()
-		level_timeout.emit()
+		get_tree().change_scene_to_file("res://menus/game_over.tscn")
 
 
 func _format_time() -> String:

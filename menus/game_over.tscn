@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://menus/game_over.gd" id="1_h0u43"]
 [ext_resource type="Texture2D" uid="uid://bov30svyjbifg" path="res://player/sprites/player1/clown_idle1.png" id="1_y4b2j"]
-[ext_resource type="Texture2D" uid="uid://cyfmtjmnc0j04" path="res://player/sprites/shoulder_left.png" id="2_rmpx7"]
+[ext_resource type="Texture2D" uid="uid://yyhufts0oboo" path="res://player/sprites/arm_left.png" id="2_rmpx7"]
 [ext_resource type="Texture2D" uid="uid://bwgl3a0e4suui" path="res://player/sprites/player2/clown_idle1_B.png" id="2_ta8mm"]
-[ext_resource type="Texture2D" uid="uid://dupves6i35chc" path="res://player/sprites/arm_left_open.png" id="3_j7vng"]
-[ext_resource type="Texture2D" uid="uid://c767htnwkxxec" path="res://player/sprites/shoulder_right.png" id="4_glhxa"]
-[ext_resource type="Texture2D" uid="uid://bd4v5tgkh0mnr" path="res://player/sprites/arm_right_open.png" id="5_tiimw"]
+[ext_resource type="Texture2D" uid="uid://dsj7ouf1cm78f" path="res://player/sprites/forearm_left_open.png" id="3_j7vng"]
+[ext_resource type="Texture2D" uid="uid://uq1rva4o01au" path="res://player/sprites/arm_right.png" id="4_glhxa"]
+[ext_resource type="Texture2D" uid="uid://gp78b16kfty2" path="res://player/sprites/forearm_right_open.png" id="5_tiimw"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -51,22 +51,22 @@ position = Vector2(0, 230)
 texture = ExtResource("1_y4b2j")
 
 [node name="ShoulderLeft" type="Sprite2D" parent="P1ScoreLabel/ClownIdle1"]
-position = Vector2(-47, -0.5)
+position = Vector2(-64, -9.5)
 texture = ExtResource("2_rmpx7")
 
 [node name="ArmLeftOpen" type="Sprite2D" parent="P1ScoreLabel/ClownIdle1/ShoulderLeft"]
-position = Vector2(-12, 31)
-rotation = 0.207978
+position = Vector2(-50, -20)
+rotation = 0.653421
 texture = ExtResource("3_j7vng")
 
 [node name="ShoulderRight" type="Sprite2D" parent="P1ScoreLabel/ClownIdle1"]
-position = Vector2(41, -4.5)
+position = Vector2(54, -18.5)
 rotation = -1.68851
 texture = ExtResource("4_glhxa")
 
 [node name="ArmRightOpen" type="Sprite2D" parent="P1ScoreLabel/ClownIdle1/ShoulderRight"]
-position = Vector2(-21.2813, 26.6853)
-rotation = 0.917032
+position = Vector2(11.8859, 52.761)
+rotation = -0.373196
 texture = ExtResource("5_tiimw")
 
 [node name="P2ScoreLabel" type="Label" parent="."]
@@ -88,22 +88,23 @@ position = Vector2(0, 230)
 texture = ExtResource("2_ta8mm")
 
 [node name="ShoulderLeft" type="Sprite2D" parent="P2ScoreLabel/ClownIdle1B"]
-position = Vector2(43, 2.5)
+position = Vector2(62, -14.5)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_rmpx7")
 
 [node name="ArmLeftOpen" type="Sprite2D" parent="P2ScoreLabel/ClownIdle1B/ShoulderLeft"]
-position = Vector2(-12, 31)
+position = Vector2(-54, -6)
 rotation = 0.207978
 texture = ExtResource("3_j7vng")
 
 [node name="ShoulderRight" type="Sprite2D" parent="P2ScoreLabel/ClownIdle1B"]
-position = Vector2(-44, -4.5)
+position = Vector2(-55, -14.5)
+rotation = 1.43335
 texture = ExtResource("4_glhxa")
 
 [node name="ArmRightOpen" type="Sprite2D" parent="P2ScoreLabel/ClownIdle1B/ShoulderRight"]
-position = Vector2(-21.2813, 26.6853)
-rotation = 0.917032
+position = Vector2(-17.5784, 54.1018)
+rotation = 0.504593
 texture = ExtResource("5_tiimw")
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
