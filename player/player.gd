@@ -16,6 +16,8 @@ extends CharacterBody2D
 
 @export_range(0.0, 10.0, 0.1) var falling_gravity_multiplier := 2.0
 
+@export var cream_disappear_time := 2.0
+
 
 var _grabbed_pie: Pie = null
 
@@ -177,5 +179,5 @@ func _animate_cream() -> void:
 	var cream_tween := create_tween()
 	cream_tween.set_parallel(true)
 	for shader_material: ShaderMaterial in shader_materials:
-		cream_tween.tween_property(shader_material, "shader_parameter/cream_quantity", 0.0, 2.0)
+		cream_tween.tween_property(shader_material, "shader_parameter/cream_quantity", 0.0, cream_disappear_time)
 	await cream_tween.finished
