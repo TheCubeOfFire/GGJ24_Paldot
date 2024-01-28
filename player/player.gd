@@ -76,8 +76,7 @@ func _update_arms_position() -> void:
 	else:
 		input_vector = Input.get_vector("arm_left_p2", "arm_right_p2", "arm_up_p2", "arm_down_p2")
 
-	if not input_vector.is_zero_approx():
-		_arms_target.position = input_vector.normalized() * max_target_distance
+	_arms_target.position = input_vector * max_target_distance
 
 	_hands.linear_velocity = (_arms_target.global_position - _hands.global_position) * arm_speed
 
