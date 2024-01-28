@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dbxca1g1c878n" path="res://sound_manager/sounds/rires.mp3" id="6_m5snc"]
 
 [node name="SoundManager" type="Node2D" node_paths=PackedStringArray("rire")]
+process_mode = 3
 script = ExtResource("1_pctgy")
 rire = NodePath("Rires")
 

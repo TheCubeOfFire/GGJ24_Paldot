@@ -13,15 +13,17 @@ func _input(event: InputEvent) -> void:
 
 
 func _set_pause(paused: bool) -> void:
-	if get_tree().paused:
+	if not paused:
+		SoundManager.stop_rires()
 		visible = false
 		var volume_tween := MusicManager.create_tween()
-		volume_tween.tween_property(MusicManager, "volume_db", 0.0, 0.2)
+		volume_tween.tween_property(MusicManager, "volume_db", -22.0, 0.2)
 	else:
 		visible = true
 		var volume_tween := MusicManager.create_tween()
-		volume_tween.tween_property(MusicManager, "volume_db", -10.0, 0.2)
+		volume_tween.tween_property(MusicManager, "volume_db", -30.0, 0.2)
 		_resume_button.grab_focus()
+		SoundManager.start_rires()
 
 	get_tree().paused = paused
 

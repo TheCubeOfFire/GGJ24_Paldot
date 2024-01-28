@@ -19,5 +19,8 @@ func _process(delta: float) -> void:
 func sproutch() ->void:
 	sproutchs.pick_random().play()
 
-func _rires() -> void:
+func start_rires() -> void:
 	rire.play()
+
+func stop_rires() -> void:
+	rire.stop()
