@@ -11,7 +11,8 @@ func spawn() -> void:
 		return
 	# create a new pie
 	var new_pie := pie.instantiate() as Pie
-	add_child(new_pie)
+	new_pie.position= position
+	get_parent().add_child(new_pie)
 	created.emit(new_pie)
 	new_pie.grabbed.connect(_on_spawned_pie_grabbed)
 	is_spawner_available = false
