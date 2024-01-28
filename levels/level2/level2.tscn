@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://e66fd4b578w4"]
+[gd_scene load_steps=12 format=3 uid="uid://e66fd4b578w4"]
 
 [ext_resource type="PackedScene" uid="uid://bww58mn12tq4o" path="res://player/player.tscn" id="4_j1xn2"]
 [ext_resource type="PackedScene" uid="uid://b41bff1dg5h76" path="res://levels/level2/level2_scene.tscn" id="5_1qud5"]
 [ext_resource type="PackedScene" uid="uid://hjd060tsaiy" path="res://player/player2.tscn" id="5_5s11d"]
 [ext_resource type="Script" path="res://spawner/spawner_manager.gd" id="6_2vkav"]
-[ext_resource type="AudioStream" uid="uid://dd853jtynf52o" path="res://music/main_themeV1.wav" id="6_dcjm5"]
 [ext_resource type="PackedScene" uid="uid://bcj7c5qs7gxvp" path="res://spawner/spawner.tscn" id="7_s0hig"]
-[ext_resource type="Script" path="res://music/loop_music.gd" id="7_t8gwt"]
 
 [sub_resource type="Curve2D" id="Curve2D_7vpxj"]
 _data = {
@@ -55,9 +53,15 @@ progress = 1751.81
 position = Vector2(25, 146)
 progress = 0.0
 
+[node name="Platform1" parent="Level/AnimatedPlatform" index="2"]
+position = Vector2(969.747, 186.752)
+
 [node name="RemoteSpawner1" type="RemoteTransform2D" parent="Level/AnimatedPlatform/Platform1" index="2"]
 position = Vector2(-1.50985, -96.5049)
 remote_path = NodePath("../../../../Spawners/SpawnerMidle")
+
+[node name="Platform2" parent="Level/AnimatedPlatform" index="3"]
+position = Vector2(25, 146)
 
 [node name="RemoteSpawner2" type="RemoteTransform2D" parent="Level/AnimatedPlatform/Platform2" index="2"]
 position = Vector2(-6.23501, -106.808)
@@ -122,27 +126,21 @@ script = ExtResource("6_2vkav")
 spawner_paths = Array[NodePath]([NodePath("SpawnerRight"), NodePath("SpawnerMidle")])
 
 [node name="SpawnerMidle" parent="Spawners" instance=ExtResource("7_s0hig")]
-position = Vector2(377, 202)
+position = Vector2(933.086, 182.368)
 scale = Vector2(0.236505, 0.240885)
 
 [node name="pie_spawn_timer" type="Timer" parent="Spawners"]
 wait_time = 2.0
 
 [node name="SpawnerRight" parent="Spawners" instance=ExtResource("7_s0hig")]
-position = Vector2(1050, 350)
+position = Vector2(104.424, 143.528)
 scale = Vector2(0.236505, 0.240885)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_dcjm5")
-autoplay = true
-script = ExtResource("7_t8gwt")
 
 [connection signal="timeout" from="pie_spawn_timer" to="." method="_on_pie_timer_timeout"]
 [connection signal="body_entered" from="Bounds/PieCatcher" to="Bounds/PieCatcher" method="_on_body_entered"]
 [connection signal="created" from="Spawners/SpawnerMidle" to="Spawners" method="_on_pie_created"]
 [connection signal="timeout" from="Spawners/pie_spawn_timer" to="Spawners" method="_on_pie_spawn_timer_timeout"]
 [connection signal="created" from="Spawners/SpawnerRight" to="Spawners" method="_on_pie_created"]
-[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 
 [editable path="Level"]
 [editable path="Level/plateform1"]
