@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ol8yqvgp7dw5"]
+[gd_scene load_steps=5 format=3 uid="uid://ol8yqvgp7dw5"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_x5sxb"]
 [ext_resource type="PackedScene" uid="uid://dljve441yjm5y" path="res://levels/main/main.tscn" id="2_iax5a"]
 [ext_resource type="PackedScene" uid="uid://e66fd4b578w4" path="res://levels/level2/level2.tscn" id="3_lhfi4"]
+[ext_resource type="Texture2D" uid="uid://cmomeyfr2i0fn" path="res://menus/main_menu.png" id="4_nv1io"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +15,15 @@ grow_vertical = 2
 script = ExtResource("1_x5sxb")
 level1 = ExtResource("2_iax5a")
 level2 = ExtResource("3_lhfi4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_nv1io")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
