@@ -64,25 +64,21 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
-	var grab_action: String
-	if player_index == 0:
-		grab_action = "grab_p1"
-	else:
-		grab_action = "grab_p2"
-
-	if Input.is_action_just_pressed(grab_action):
+	if InputManager.is_action_just_pressed_for_player(player_index, InputManager.InputActionType.GRAB):
 		_grab()
 
-	if Input.is_action_just_released(grab_action):
+	if InputManager.is_action_just_released_for_player(player_index, InputManager.InputActionType.GRAB):
 		_ungrab()
 
 
 func _update_arms_position() -> void:
-	var input_vector
-	if player_index == 0:
-		input_vector = Input.get_vector("arm_left_p1", "arm_right_p1", "arm_up_p1", "arm_down_p1")
-	else:
-		input_vector = Input.get_vector("arm_left_p2", "arm_right_p2", "arm_up_p2", "arm_down_p2")
+	var input_vector := InputManager.get_vector_for_player(
+		player_index,
+		InputManager.InputActionType.ARM_LEFT,
+		InputManager.InputActionType.ARM_RIGHT,
+		InputManager.InputActionType.ARM_UP,
+		InputManager.InputActionType.ARM_DOWN
+	)
 
 	_arms_target.position = input_vector * max_target_distance
 
@@ -90,12 +86,13 @@ func _update_arms_position() -> void:
 
 
 func _update_horizontal_speed() -> void:
-	var h_speed: float
-	if player_index == 0:
-		h_speed = speed * Input.get_axis("move_left_p1", "move_right_p1")
-	else:
-		h_speed = speed * Input.get_axis("move_left_p2", "move_right_p2")
-	velocity.x = h_speed
+	var horizontal_input := InputManager.get_axis_for_player(
+		player_index,
+		InputManager.InputActionType.MOVE_LEFT,
+		InputManager.InputActionType.MOVE_RIGHT,
+	)
+
+	velocity.x = speed * horizontal_input
 
 	if not velocity.is_zero_approx():
 		_body_anim_sprite.play("Move")
@@ -104,14 +101,12 @@ func _update_horizontal_speed() -> void:
 
 
 func _update_vertical_speed() -> void:
-	var jump_action := "jump_p1" if player_index == 0 else "jump_p2"
-
 	if is_on_floor():
-		if Input.is_action_just_pressed(jump_action):
+		if InputManager.is_action_just_pressed_for_player(player_index, InputManager.InputActionType.JUMP):
 			velocity.y -= jump_impulse
 
 	if velocity.y < 0.0:
-		if Input.is_action_just_released(jump_action):
+		if InputManager.is_action_just_released_for_player(player_index, InputManager.InputActionType.JUMP):
 			velocity.y = velocity.y * 0.5
 		velocity.y += gravity * get_physics_process_delta_time()
 	else:
