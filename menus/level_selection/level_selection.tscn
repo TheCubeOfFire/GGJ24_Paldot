@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdi6l0v1uis51"]
+
+[ext_resource type="Script" path="res://menus/level_selection/level_selection.gd" id="1_rqocd"]
+[ext_resource type="Texture2D" uid="uid://cmomeyfr2i0fn" path="res://menus/main_menu.png" id="1_xp7ka"]
+[ext_resource type="Texture2D" uid="uid://esf657rouvio" path="res://levels/main/level.png" id="2_8ewb4"]
+[ext_resource type="PackedScene" uid="uid://220nbgyt8y4u" path="res://menus/level_selection/level_selection_element_control.tscn" id="2_vof0x"]
+[ext_resource type="Script" path="res://menus/level_selection/level_data.gd" id="3_38h47"]
+[ext_resource type="Texture2D" uid="uid://ga2xrd4ict5r" path="res://levels/level2/level2.png" id="4_n38ls"]
+
+[sub_resource type="Resource" id="Resource_fakde"]
+script = ExtResource("3_38h47")
+level_scene_path = "res://levels/main/main.tscn"
+level_icon = ExtResource("2_8ewb4")
+
+[sub_resource type="Resource" id="Resource_vaq5w"]
+script = ExtResource("3_38h47")
+level_scene_path = "res://levels/level2/level2.tscn"
+level_icon = ExtResource("4_n38ls")
+
+[node name="LevelSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rqocd")
+previous_scene_path = "res://menus/player_selection/player_selection.tscn"
+level_control_scene = ExtResource("2_vof0x")
+levels_data = Array[ExtResource("3_38h47")]([SubResource("Resource_fakde"), SubResource("Resource_vaq5w")])
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xp7ka")
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="LevelsGridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

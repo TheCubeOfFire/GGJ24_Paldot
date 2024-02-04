@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://220nbgyt8y4u"]
+
+[ext_resource type="Script" path="res://menus/level_selection/level_selection_element_control.gd" id="1_jig0k"]
+
+[node name="LevelSelectionElementControl" type="MarginContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_jig0k")
+
+[node name="SelectLevelButton" type="Button" parent="."]
+layout_mode = 2
+theme_override_constants/icon_max_width = 250
+icon_alignment = 1
