@@ -99,6 +99,7 @@ platform_wall_layers = 2
 script = ExtResource("1_3xu54")
 speed = 500.0
 falling_gravity_multiplier = 1.0
+cream_disappear_time = 0.5
 
 [node name="BodyAnimSprite" type="AnimatedSprite2D" parent="."]
 material = ExtResource("2_jv5kn")

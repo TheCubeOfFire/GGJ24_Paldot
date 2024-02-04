@@ -20,6 +20,7 @@ extends CharacterBody2D
 
 
 var _grabbed_pie: Pie = null
+var _cream_tween: Tween = null
 
 
 @onready var _arms_target: Marker2D = $ArmsOrigin/ArmsTarget
@@ -184,6 +185,10 @@ func _animate_cream() -> void:
 
 	]
 
+	if is_instance_valid(_cream_tween):
+		_cream_tween.kill()
+		_cream_tween = null
+
 	var shader_materials: Array[ShaderMaterial] = []
 
 	for part: CanvasItem in cream_covered_parts:
@@ -192,11 +197,15 @@ func _animate_cream() -> void:
 		shader_material.set_shader_parameter("cream_quantity", 1.0)
 		shader_materials.append(shader_material)
 
-	var cream_tween := create_tween()
-	cream_tween.set_parallel(true)
+	_cream_tween = create_tween()
+	_cream_tween.set_trans(Tween.TRANS_CIRC)
+	_cream_tween.set_ease(Tween.EASE_IN)
+	_cream_tween.set_parallel(true)
 	for shader_material: ShaderMaterial in shader_materials:
-		cream_tween.tween_property(shader_material, "shader_parameter/cream_quantity", 0.0, cream_disappear_time)
-	await cream_tween.finished
+		_cream_tween.tween_property(shader_material, "shader_parameter/cream_quantity", 0.0, cream_disappear_time)
+
+	await _cream_tween.finished
+	_cream_tween = null
 
 
 func _toogle_arm_sprite() ->void:
