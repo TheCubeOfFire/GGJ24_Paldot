@@ -1,7 +1,7 @@
 extends Control
 
 
-@export var next_scene: PackedScene
+@export_file var next_scene_path: String
 
 @export var player_confirm_physical_key: Key = KEY_NONE
 @export var player_confirm_gamepad_button: JoyButton = JOY_BUTTON_INVALID
@@ -94,4 +94,4 @@ func _on_confirmed_status_changed(player_index: int) -> void:
 		all_player_confirmed = all_player_confirmed && confirmed_player
 
 	if all_player_confirmed:
-		get_tree().change_scene_to_packed(next_scene)
+		get_tree().change_scene_to_file(next_scene_path)

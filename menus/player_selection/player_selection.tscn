@@ -68,6 +68,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ftsy")
+next_scene_path = "res://menus/level_selection/level_selection.tscn"
 player_confirm_physical_key = 32
 player_confirm_gamepad_button = 0
 player_input_selectors = [NodePath("Player1VBox"), NodePath("Player2VBox")]

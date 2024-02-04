@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ol8yqvgp7dw5"]
+[gd_scene load_steps=4 format=3 uid="uid://ol8yqvgp7dw5"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_x5sxb"]
-[ext_resource type="PackedScene" uid="uid://dljve441yjm5y" path="res://levels/main/main.tscn" id="2_iax5a"]
-[ext_resource type="PackedScene" uid="uid://e66fd4b578w4" path="res://levels/level2/level2.tscn" id="3_lhfi4"]
+[ext_resource type="PackedScene" uid="uid://c4d51spgxoxyx" path="res://menus/player_selection/player_selection.tscn" id="2_4mwd0"]
 [ext_resource type="Texture2D" uid="uid://cmomeyfr2i0fn" path="res://menus/main_menu.png" id="4_nv1io"]
 
 [node name="MainMenu" type="Control"]
@@ -13,8 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x5sxb")
-level1 = ExtResource("2_iax5a")
-level2 = ExtResource("3_lhfi4")
+play_scene = ExtResource("2_4mwd0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -40,13 +38,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ButtonLevel1" type="Button" parent="VBoxContainer"]
+[node name="ButtonStart" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Level 1"
-
-[node name="ButtonLevel2" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Level 2"
+text = "Start"
 
 [node name="ButtonCredits" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -57,7 +52,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/ButtonLevel1" to="." method="_on_button_level1_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonLevel2" to="." method="_on_button_level2_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonCredits" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
