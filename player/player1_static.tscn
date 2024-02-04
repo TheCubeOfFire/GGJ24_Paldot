@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbc6lu1tw2knk"]
+
+[ext_resource type="Texture2D" uid="uid://bov30svyjbifg" path="res://player/sprites/player1/clown_idle1.png" id="1_wctpj"]
+[ext_resource type="Texture2D" uid="uid://yyhufts0oboo" path="res://player/sprites/arm_left.png" id="2_mnba8"]
+[ext_resource type="Texture2D" uid="uid://dsj7ouf1cm78f" path="res://player/sprites/forearm_left_open.png" id="3_bff6b"]
+[ext_resource type="Texture2D" uid="uid://uq1rva4o01au" path="res://player/sprites/arm_right.png" id="4_7b11m"]
+[ext_resource type="Texture2D" uid="uid://gp78b16kfty2" path="res://player/sprites/forearm_right_open.png" id="5_vqfmu"]
+
+[node name="ClownIdle1" type="Sprite2D"]
+texture = ExtResource("1_wctpj")
+
+[node name="ShoulderLeft" type="Sprite2D" parent="."]
+position = Vector2(-64, -9.5)
+texture = ExtResource("2_mnba8")
+
+[node name="ArmLeftOpen" type="Sprite2D" parent="ShoulderLeft"]
+position = Vector2(-50, -20)
+rotation = 0.653421
+texture = ExtResource("3_bff6b")
+
+[node name="ShoulderRight" type="Sprite2D" parent="."]
+position = Vector2(54, -18.5)
+rotation = -1.68851
+texture = ExtResource("4_7b11m")
+
+[node name="ArmRightOpen" type="Sprite2D" parent="ShoulderRight"]
+position = Vector2(11.8859, 52.761)
+rotation = -0.373196
+texture = ExtResource("5_vqfmu")

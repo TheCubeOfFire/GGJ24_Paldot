@@ -1,0 +1,271 @@
+[gd_scene load_steps=27 format=3 uid="uid://c4d51spgxoxyx"]
+
+[ext_resource type="Script" path="res://menus/player_selection/player_selection.gd" id="1_0ftsy"]
+[ext_resource type="Texture2D" uid="uid://cmomeyfr2i0fn" path="res://menus/main_menu.png" id="1_l3705"]
+[ext_resource type="PackedScene" uid="uid://dbc6lu1tw2knk" path="res://player/player1_static.tscn" id="1_xim20"]
+[ext_resource type="Texture2D" uid="uid://btf1n2f3t2hiy" path="res://menus/player_selection/controller_icons/keyboard_arrows.png" id="2_no3wg"]
+[ext_resource type="Texture2D" uid="uid://bmctrtd4uhtgr" path="res://menus/theme/button.png" id="3_m30qr"]
+[ext_resource type="Texture2D" uid="uid://dj5flw7oyfc5e" path="res://menus/player_selection/controller_icons/mouse_small.png" id="3_mti47"]
+[ext_resource type="Texture2D" uid="uid://ben27ubaf1u6v" path="res://menus/inputs/xbox_lb.png" id="3_p5d5g"]
+[ext_resource type="Texture2D" uid="uid://1itv6x2hhuwt" path="res://menus/player_selection/controller_icons/gamepad1.png" id="4_1bxt6"]
+[ext_resource type="Texture2D" uid="uid://dqmi4h38pvwsh" path="res://menus/inputs/generic_button_square.png" id="4_nnvxn"]
+[ext_resource type="Texture2D" uid="uid://detkuwwtkb2ys" path="res://menus/inputs/playstation_trigger_l1_alternative.png" id="4_rp6sm"]
+[ext_resource type="PackedScene" uid="uid://8hqnix2w6ww" path="res://player/player2_static.tscn" id="5_5oj37"]
+[ext_resource type="Texture2D" uid="uid://nnsdh3dcycn7" path="res://menus/player_selection/controller_icons/gamepad2.png" id="5_twwq0"]
+[ext_resource type="Texture2D" uid="uid://be14p8xtlhumh" path="res://menus/player_selection/controller_icons/gamepad3.png" id="6_i2ukj"]
+[ext_resource type="Texture2D" uid="uid://c1ic84bty5sut" path="res://menus/player_selection/controller_icons/gamepad4.png" id="7_5hesv"]
+[ext_resource type="Script" path="res://menus/player_selection/player_input_selector.gd" id="8_332tb"]
+[ext_resource type="Texture2D" uid="uid://dkpf2v1qqkxi4" path="res://menus/inputs/xbox_rb.png" id="8_w858p"]
+[ext_resource type="Texture2D" uid="uid://did1s35p2vfuf" path="res://menus/inputs/playstation_trigger_r1_alternative.png" id="9_6w6br"]
+[ext_resource type="Texture2D" uid="uid://cxwf8figsoc3x" path="res://menus/inputs/keyboard_space.png" id="11_jk1cq"]
+[ext_resource type="Texture2D" uid="uid://baa6krpgpkjvo" path="res://menus/theme/button_light.png" id="11_yqo0s"]
+[ext_resource type="Texture2D" uid="uid://dpqr0yxt3ca7v" path="res://menus/inputs/xbox_button_a.png" id="12_pxhno"]
+[ext_resource type="Texture2D" uid="uid://d2xf1twkmg1yb" path="res://menus/inputs/playstation_button_cross.png" id="13_o0e56"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mucsd"]
+texture = ExtResource("3_m30qr")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guo1d"]
+texture = ExtResource("4_nnvxn")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="SystemFont" id="SystemFont_6vlse"]
+font_names = PackedStringArray("Sans-Serif")
+font_weight = 800
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h28me"]
+texture = ExtResource("3_m30qr")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fjf2"]
+texture = ExtResource("3_m30qr")
+texture_margin_left = 29.0
+texture_margin_top = 23.0
+texture_margin_right = 29.0
+texture_margin_bottom = 25.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="PlayerSelection" type="Control" node_paths=PackedStringArray("player_input_selectors")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ftsy")
+player_confirm_physical_key = 32
+player_confirm_gamepad_button = 0
+player_input_selectors = [NodePath("Player1VBox"), NodePath("Player2VBox")]
+
+[node name="MainMenu" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_l3705")
+metadata/_edit_lock_ = true
+
+[node name="Player1VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = -150.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("8_332tb")
+player_index = 0
+keyboard_texture = ExtResource("2_no3wg")
+mouse_texture = ExtResource("3_mti47")
+gamepad_textures = Array[Texture2D]([ExtResource("4_1bxt6"), ExtResource("5_twwq0"), ExtResource("6_i2ukj"), ExtResource("7_5hesv")])
+unconfirmed_texture = ExtResource("3_m30qr")
+confirmed_texture = ExtResource("11_yqo0s")
+select_physical_key_code = 65
+select_gamepad_button = 9
+inputs_panel_container_node_path = NodePath("Player1InputsPanelContainer")
+key_label_node_path = NodePath("Player1InputsPanelContainer/InputsHBox/KeyLeftPanelContainer/KeyLeftLabel")
+current_controller_node_path = NodePath("ControllerCenterContainer/Player1ControllerHBox")
+
+[node name="Player1InputsPanelContainer" type="PanelContainer" parent="Player1VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mucsd")
+
+[node name="InputsHBox" type="HBoxContainer" parent="Player1VBox/Player1InputsPanelContainer"]
+layout_mode = 2
+
+[node name="KeyLeftPanelContainer" type="PanelContainer" parent="Player1VBox/Player1InputsPanelContainer/InputsHBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_guo1d")
+
+[node name="KeyLeftLabel" type="Label" parent="Player1VBox/Player1InputsPanelContainer/InputsHBox/KeyLeftPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.854902, 0.654902, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_6vlse")
+theme_override_font_sizes/font_size = 20
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XboxLb" type="TextureRect" parent="Player1VBox/Player1InputsPanelContainer/InputsHBox"]
+layout_mode = 2
+texture = ExtResource("3_p5d5g")
+
+[node name="PlaystationL1" type="TextureRect" parent="Player1VBox/Player1InputsPanelContainer/InputsHBox"]
+layout_mode = 2
+texture = ExtResource("4_rp6sm")
+
+[node name="Player1SpriteContainer" type="Control" parent="Player1VBox"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Player1SpriteCenter" type="Control" parent="Player1VBox/Player1SpriteContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClownIdle1" parent="Player1VBox/Player1SpriteContainer/Player1SpriteCenter" instance=ExtResource("1_xim20")]
+
+[node name="ControllerCenterContainer" type="CenterContainer" parent="Player1VBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Player1ControllerHBox" type="HBoxContainer" parent="Player1VBox/ControllerCenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Player2VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_bottom = -50.0
+grow_vertical = 2
+script = ExtResource("8_332tb")
+player_index = 1
+keyboard_texture = ExtResource("2_no3wg")
+mouse_texture = ExtResource("3_mti47")
+gamepad_textures = Array[Texture2D]([ExtResource("4_1bxt6"), ExtResource("5_twwq0"), ExtResource("6_i2ukj"), ExtResource("7_5hesv")])
+unconfirmed_texture = ExtResource("3_m30qr")
+confirmed_texture = ExtResource("11_yqo0s")
+select_physical_key_code = 68
+select_gamepad_button = 10
+inputs_panel_container_node_path = NodePath("Player2InputsPanelContainer")
+key_label_node_path = NodePath("Player2InputsPanelContainer/InputsHBox/KeyRightPanelContainer/KeyRightLabel")
+current_controller_node_path = NodePath("ControllerCenterContainer/Player2ControllerHBox")
+
+[node name="Player2InputsPanelContainer" type="PanelContainer" parent="Player2VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_h28me")
+
+[node name="InputsHBox" type="HBoxContainer" parent="Player2VBox/Player2InputsPanelContainer"]
+layout_mode = 2
+
+[node name="KeyRightPanelContainer" type="PanelContainer" parent="Player2VBox/Player2InputsPanelContainer/InputsHBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_guo1d")
+
+[node name="KeyRightLabel" type="Label" parent="Player2VBox/Player2InputsPanelContainer/InputsHBox/KeyRightPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.854902, 0.654902, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_6vlse")
+theme_override_font_sizes/font_size = 20
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="XboxRb" type="TextureRect" parent="Player2VBox/Player2InputsPanelContainer/InputsHBox"]
+layout_mode = 2
+texture = ExtResource("8_w858p")
+
+[node name="PlaystationTriggerR1Alternative" type="TextureRect" parent="Player2VBox/Player2InputsPanelContainer/InputsHBox"]
+layout_mode = 2
+texture = ExtResource("9_6w6br")
+
+[node name="Player2SpriteContainer" type="Control" parent="Player2VBox"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Player1SpriteCenter" type="Control" parent="Player2VBox/Player2SpriteContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClownIdle1B" parent="Player2VBox/Player2SpriteContainer/Player1SpriteCenter" instance=ExtResource("5_5oj37")]
+
+[node name="ControllerCenterContainer" type="CenterContainer" parent="Player2VBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Player2ControllerHBox" type="HBoxContainer" parent="Player2VBox/ControllerCenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AcceptPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8fjf2")
+
+[node name="AcceptHBoxContainer" type="HBoxContainer" parent="AcceptPanelContainer"]
+layout_mode = 2
+
+[node name="KeyboardSpace" type="TextureRect" parent="AcceptPanelContainer/AcceptHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_jk1cq")
+
+[node name="XboxButtonA" type="TextureRect" parent="AcceptPanelContainer/AcceptHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_pxhno")
+
+[node name="PlaystationButtonCross" type="TextureRect" parent="AcceptPanelContainer/AcceptHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_o0e56")
