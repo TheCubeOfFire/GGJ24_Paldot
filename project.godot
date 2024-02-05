@@ -22,6 +22,7 @@ GlobalInputs="*res://global_inputs.gd"
 MusicManager="*res://music/music_manager.tscn"
 SoundManager="*res://sound_manager/sound_manager.tscn"
 InputManager="*res://input_manager.gd"
+LicensePrinter="res://license_printer.gd"
 
 [display]
 
