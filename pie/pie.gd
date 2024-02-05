@@ -13,6 +13,9 @@ signal grabbed
 signal launched
 
 
+@export var cream_particles_scene: PackedScene
+
+
 var is_grabbed: bool:
 	get: return _state == PieState.GRABBED
 
@@ -38,9 +41,27 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _exit_tree() -> void:
 	SoundManager.sproutch()
+
 	if is_instance_valid(_joint):
 		_joint.queue_free()
 		_joint = null
+
+	_spawn_particles()
+
+
+func _spawn_particles() -> void:
+	var cream_particles := cream_particles_scene.instantiate() as CPUParticles2D
+	cream_particles.emitting = true
+
+	# emits an error when the scene is destroyed,
+	# but it does not prevent the game from working as intended
+	# TODO properly check if scene is being destroyed
+	get_tree().root.add_child(cream_particles)
+
+	# only position is taken so particles are always emitted upwards
+	cream_particles.global_position = global_position
+
+	cream_particles.finished.connect(func(): cream_particles.queue_free())
 
 
 func grab(by: PhysicsBody2D) -> void:

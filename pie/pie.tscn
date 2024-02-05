@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbiotug5px8wx"]
+[gd_scene load_steps=5 format=3 uid="uid://bbiotug5px8wx"]
 
 [ext_resource type="Texture2D" uid="uid://hbr8v63pj48s" path="res://pie/cream_pie.png" id="1_cvf4l"]
 [ext_resource type="Script" path="res://pie/pie.gd" id="1_setri"]
+[ext_resource type="PackedScene" uid="uid://bqf7lkremag70" path="res://pie/cream_particles.tscn" id="2_jq2i3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0xe2"]
 radius = 28.0
@@ -14,6 +15,7 @@ can_sleep = false
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_setri")
+cream_particles_scene = ExtResource("2_jq2i3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
