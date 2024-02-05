@@ -98,6 +98,14 @@ func get_gamepad_player_index(gamepad_index: int) -> int:
 	return -1
 
 
+func start_vibration_for_player(player_index: int, weak_magnitude: float, strong_magnitude: float, duration: float) -> void:
+	var controller_data := get_player_input(player_index)
+	if not is_instance_valid(controller_data):
+		return
+
+	if controller_data.input_controller_type == InputManager.InputControllerType.INPUT_CONTROLLER_TYPE_GAMEPAD:
+		Input.start_joy_vibration(controller_data.input_controller_index, weak_magnitude, strong_magnitude, duration)
+
 func is_action_just_pressed_for_player(player_index: int, action_type: InputActionType) -> bool:
 	return Input.is_action_just_pressed(get_action_name_for_player(player_index, action_type))
 

@@ -18,6 +18,10 @@ extends CharacterBody2D
 
 @export var cream_disappear_time := 2.0
 
+@export_range(0.0, 1.0) var creamed_weak_vibration := 0.1
+@export_range(0.0, 1.0) var creamed_strong_vibration := 0.1
+@export_range(0.0, 10.0, 0.001, "suffix:s") var creamed_vibration_duration := 0.5
+
 
 var _grabbed_pie: Pie = null
 var _cream_tween: Tween = null
@@ -170,6 +174,7 @@ func _on_pie_detector_body_entered(body: Node2D) -> void:
 		else:
 			ScoreManager.increment_p1_score()
 
+		InputManager.start_vibration_for_player(player_index, creamed_weak_vibration, creamed_strong_vibration, creamed_vibration_duration)
 		_animate_cream()
 
 
